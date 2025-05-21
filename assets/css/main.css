@@ -1787,7 +1787,7 @@ input, select, textarea {
 		width: 940px;
 		margin: 0 auto;
 		overflow: hidden;
-		padding: 9em 0 6em 0;
+		padding: 2em 0 2em 0; /* Reduced from 9em 0 6em 0 */
 	}
 
 		#banner h2 {
@@ -1838,6 +1838,23 @@ input, select, textarea {
 			width: 60%;
 			line-height: 1.5em;
 			margin: 0;
+		}
+
+		@media screen and (max-width: 1280px) {
+			#banner {
+				width: 100%;
+				padding: 1.5em 0 1.5em 0; /* Reduced from 4em 0 2em 0 */
+			}
+		}
+		@media screen and (max-width: 980px) {
+			#banner {
+				padding: 2em 0 2em 0; /* Reduced from 8em 0 4em 0 */
+			}
+		}
+		@media screen and (max-width: 736px) {
+			#banner {
+				padding: 20px 10px 20px 10px; /* Reduced from 40px 20px 40px 20px */
+			}
 		}
 
 /* Sidebar */
