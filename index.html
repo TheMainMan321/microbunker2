@@ -59,9 +59,9 @@
 														<li>
 															<a href="mbgzpc.html">Podcasts</a>
 															<ul>
-																<li><a href="/assets/audio/episode1.wav">Episode 1: XYZ</a></li>
-																<li><a href="/assets/audio/episode2.wav">Episode 2: Bluebird</a></li>
-																<li><a href="/assets/audio/episode3.wav">Episode 3: Event in Jupiter</a></li>
+																<li><a href="/assets/audio/episode1.wav" onclick="playAudio(event, '/assets/audio/episode1.wav')">Episode 1: XYZ</a></li>
+																<li><a href="/assets/audio/episode2.wav" onclick="playAudio(event, '/assets/audio/episode2.wav')">Episode 2: Bluebird</a></li>
+																<li><a href="/assets/audio/episode3.wav" onclick="playAudio(event, '/assets/audio/episode3.wav')">Episode 3: Event in Jupiter</a></li>
 															</ul>	
 														</Lli>													
 													</ul>
@@ -93,6 +93,26 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+function playAudio(event, url) {
+    event.preventDefault();
+    window.open(
+        '',
+        'audioPopup',
+        'width=400,height=120'
+    ).document.write(
+        `<html>
+            <head><title>Audio Player</title></head>
+            <body style="margin:0;display:flex;align-items:center;justify-content:center;height:100%;">
+                <audio controls autoplay style="width:95%;">
+                    <source src="${url}" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+            </body>
+        </html>`
+    );
+}
+</script>
 
 	</body>
 </html>
