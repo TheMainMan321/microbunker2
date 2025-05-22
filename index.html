@@ -63,7 +63,7 @@
 																<li><a href="/assets/audio/episode2.wav" onclick="playAudio(event, '/assets/audio/episode2.wav')">Episode 2: Bluebird</a></li>
 																<li><a href="/assets/audio/episode3.wav" onclick="playAudio(event, '/assets/audio/episode3.wav')">Episode 3: Event in Jupiter</a></li>
 															</ul>	
-														</Lli>													
+														</li>													
 													</ul>
 													<li><a href="mbvb.html">Viking Bash</a></li>
 													<li><a href="mbst.html">Store</a></li>
@@ -96,27 +96,33 @@
 			<script>
 function playAudio(event, url) {
     event.preventDefault();
-    // Open a new popup window
-    var popup = window.open('', 'audioPopup', 'width=400,height=120');
-    // Write the player HTML
+    const popup = window.open('', '', 'width=400,height=140');
     popup.document.open();
-    popup.document.write(
-        `<html>
-            <head><title>Audio Player</title></head>
-            <body style="margin:0;display:flex;align-items:center;justify-content:center;height:100%;">
-                <audio id="audio" controls autoplay style="width:95%;">
+    popup.document.write(`
+        <html>
+        <head>
+            <title>Audio Player</title>
+            <style>
+                body { margin:0; display:flex; align-items:center; justify-content:center; height:100vh; background:#222; }
+                .player-container { text-align:center; width:95%; }
+                button { margin-top: 10px; padding: 8px 18px; font-size: 1em; }
+                audio { width: 100%; margin-top: 10px; }
+                h2 { color: #fff; font-size: 1.1em; }
+            </style>
+        </head>
+        <body>
+            <div class="player-container">
+                <h2>Click Play to Start Audio</h2>
+                <audio id="audio" controls style="width:100%;">
                     <source src="${url}" type="audio/wav">
                     Your browser does not support the audio element.
                 </audio>
-                <script>
-                    window.onload = function() {
-                        var audio = document.getElementById('audio');
-                        audio.play();
-                    }
-                <\/script>
-            </body>
-        </html>`
-    );
+                <br>
+                <button onclick="document.getElementById('audio').play()">Play</button>
+            </div>
+        </body>
+        </html>
+    `);
     popup.document.close();
 }
 </script>
