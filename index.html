@@ -96,34 +96,11 @@
 			<script>
 function playAudio(event, url) {
     event.preventDefault();
-    const popup = window.open('', '', 'width=400,height=140');
-    popup.document.open();
-    popup.document.write(`
-        <html>
-        <head>
-            <title>Audio Player</title>
-            <style>
-                body { margin:0; display:flex; align-items:center; justify-content:center; height:100vh; background:#222; }
-                .player-container { text-align:center; width:95%; }
-                button { margin-top: 10px; padding: 8px 18px; font-size: 1em; }
-                audio { width: 100%; margin-top: 10px; }
-                h2 { color: #fff; font-size: 1.1em; }
-            </style>
-        </head>
-        <body>
-            <div class="player-container">
-                <h2>Click Play to Start Audio</h2>
-                <audio id="audio" controls style="width:100%;">
-                    <source src="${url}" type="audio/wav">
-                    Your browser does not support the audio element.
-                </audio>
-                <br>
-                <button onclick="document.getElementById('audio').play()">Play</button>
-            </div>
-        </body>
-        </html>
-    `);
-    popup.document.close();
+    window.open(
+        'assets/audio-player.html?file=' + encodeURIComponent(url),
+        '_blank',
+        'width=400,height=140'
+    );
 }
 </script>
 
