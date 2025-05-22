@@ -29,6 +29,15 @@
             document.getElementById('audioSource').src = file;
             document.getElementById('audio').load();
         }
+
+        function playAudio(event, url) {
+            event.preventDefault();
+            window.open(
+                'assets/audio-player.html?file=' + encodeURIComponent(url),
+                '_blank',
+                'width=400,height=140'
+            );
+        }
     </script>
 </body>
 </html>
