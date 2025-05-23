@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<!--
+    ZeroFour by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>ZeroFour by HTML5 UP</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </head>
+    <body class="homepage is-preload">
+        <div id="page-wrapper">
+
+            <!-- Header -->
+                <div id="header-wrapper">
+                    <div class="container">
+
+                        <!-- Header -->
+                            <header id="header">
+                                <div class="inner">
+
+                                    <!-- Logo -->
+                                        <h1><a href="index.html" id="logo">The Micro Bunker</a></h1>
+
+                                    <!-- Nav -->
+                                        <div id="menu-include"></div>
+                                </div>
+                            </header>
+
+                        <!-- Banner -->
+                            <div id="banner">
+                                <h2>
+                                    Where Small Battles Lead to Epic Victories!
+                                </h2>
+                            </div>
+                        <img src="images/mb1.png" alt="Micro Bunker Logo" style="max-width: 100%; height: auto;" />
+                    </div>
+                </div>
+        </div>
+        <!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/jquery.dropotron.min.js"></script>
+            <script src="assets/js/browser.min.js"></script>
+            <script src="assets/js/breakpoints.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+            <script>
+$(function() {
+    $("#menu-include").load("menu.html", function() {
+        // Re-initialize Dropotron after menu is loaded
+        $("#nav > ul").dropotron({
+            alignment: 'right',
+            hideDelay: 350
+        });
+    });
+});
+function playAudio(event, url) {
+    event.preventDefault();
+    window.open(
+        'assets/audio-player.html?file=' + encodeURIComponent(url),
+        '_blank',
+        'width=400,height=140'
+    );
+}
+</script>
+
+    </body>
+</html>
