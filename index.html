@@ -50,19 +50,24 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script>
-    // Dynamically load the menu
-    $(function() {
-        $("#menu-include").load("menu.html");
+$(function() {
+    $("#menu-include").load("menu.html", function() {
+        // Re-initialize Dropotron after menu is loaded
+        $("#nav > ul").dropotron({
+            alignment: 'right',
+            hideDelay: 350
+        });
     });
-    function playAudio(event, url) {
-        event.preventDefault();
-        window.open(
-            'assets/audio-player.html?file=' + encodeURIComponent(url),
-            '_blank',
-            'width=400,height=140'
-        );
-    }
-    </script>
+});
+function playAudio(event, url) {
+    event.preventDefault();
+    window.open(
+        'assets/audio-player.html?file=' + encodeURIComponent(url),
+        '_blank',
+        'width=400,height=140'
+    );
+}
+</script>
 
 	</body>
 </html>
