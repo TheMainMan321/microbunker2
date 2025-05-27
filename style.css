@@ -17,69 +17,30 @@
 }
 
 /* === 2. Body Styles (Base Font, Color, etc.) === */
-/*
-    These are general body styles that apply to ALL pages using this CSS,
-    regardless of the background image.
-*/
 body {
     font-family: sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f4; /* Fallback background color */
-
-    /*
-        NOTE: Background image properties (image path, size, position, repeat)
-        are NO LONGER defined here. They are defined in specific classes
-        like .background-microbunker below.
-    */
-
-    background-attachment: scroll; /* Keep attachment here if it's consistent */
-    /* If background-attachment needs to vary per image, move it to the classes too */
+    background-attachment: scroll;
 }
 
 /* === 3. Background Image Classes === */
-/*
-    Define classes for each specific background image you want to use.
-    Each class contains the unique background properties for that image.
-    HTML pages will add one of these classes to their <body> tag.
-*/
-
+/* Define classes for each specific background image */
 .background-microbunker {
-    /*
-        This class applies the microbunker image as the background.
-        Add this class to the <body> tag of any HTML page that should
-        have this specific background. Example: <body class="background-microbunker">
-    */
-    background-image: url('/images/microbunker.png'); /* Path for this specific image */
-    background-repeat: no-repeat; /* Prevents tiling */
-    background-size: 100% auto; /* Width 100%, height auto to maintain aspect ratio */
-    background-position: center top; /* Position the image */
-    /* Add any other background properties specific to this image here */
+    background-image: url('/images/microbunker.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center top;
 }
 
-/*
-    Example: If you had another image, you'd create another class:
-    .background-otherimage {
-        background-image: url('/images/otherimage.jpg');
-        background-repeat: repeat; /* Maybe this one tiles */
-        background-size: cover; /* Maybe this one covers the screen */
-        background-position: center center;
-    }
-*/
-
-
 /* === 4. General Layout and Spacing === */
-/*
-    These styles apply to the main content containers and sections,
-    providing padding, centering, and the semi-transparent background
-    to ensure text readability over ANY background image applied to the body.
-*/
 header, main, footer {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
-    z-index: 1; /* Ensures content is above the background */
+    z-index: 1;
 }
 
 /* Add a background color to content sections for readability */
@@ -96,30 +57,60 @@ main {
 }
 
 header {
-    text-align: center;
+    text-align: center; /* Centers the h1 and the #menu-placeholder/nav */
     padding-bottom: 10px;
 }
 
+/* Style the menu placeholder if needed */
+#menu-placeholder {
+    margin-top: 10px; /* Space between title and menu */
+    /* The nav element loaded inside will inherit styles or be targeted directly */
+}
+
+/* === 5. Navigation Menu Styles === */
+/*
+    These styles target the <nav> element and its contents,
+    whether it's the fallback <nav> in <noscript> or the <nav>
+    loaded via JavaScript into #menu-placeholder.
+*/
 nav ul {
-    list-style: none;
-    padding: 0;
+    list-style: none; /* Removes default bullet points */
+    padding: 0; /* Removes default padding */
+    /*
+        To center the list items horizontally within the nav/header,
+        we can use flexbox on the ul and center the items.
+        Alternatively, if the nav is treated as an inline-block element
+        or has display: block with margin: auto, text-align: center on the header works.
+        Let's use flexbox for explicit centering of the list items.
+    */
+    display: flex; /* Enable flexbox for the ul */
+    justify-content: center; /* Center flex items (li) horizontally */
+    flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
 }
 
 nav li {
-    display: inline-block;
-    margin: 0 15px;
+    display: inline-block; /* Keep list items horizontal by default */
+    /* Note: display: flex on the ul makes the li elements flex items,
+             so display: inline-block here might be redundant or behave
+             slightly differently depending on context. Let's rely on flexbox. */
+    /* display: list-item; /* Revert to default list item behavior if needed */
+    margin: 0 15px; /* Adds horizontal space between menu items */
 }
 
 nav a {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
+    text-decoration: none; /* Removes the default underline from links */
+    color: #007bff; /* Sets a link color (blue) */
+    font-weight: bold; /* Makes link text bold */
+    padding: 5px 0; /* Add some padding around the link text */
+    display: inline-block; /* Ensures padding works correctly */
 }
 
 nav a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Adds underline on hover for user feedback */
 }
 
+
+/* === 6. Content Section Styles === */
 .hero {
     text-align: center;
     padding: 50px 20px;
@@ -140,6 +131,7 @@ nav a:hover {
     margin-bottom: 15px;
 }
 
+/* === 7. Footer Styles === */
 footer {
     text-align: center;
     padding-top: 20px;
@@ -148,12 +140,7 @@ footer {
 }
 
 
-/* === 5. Responsive Design (Media Queries) === */
-/*
-    Adjustments for different screen sizes.
-    These styles will override the general styles above when the conditions are met.
-    We'll also adjust the background properties within the classes if needed per breakpoint.
-*/
+/* === 8. Responsive Design (Media Queries) === */
 
 /* --- Optimization for Tablets and Smaller Desktops (768px to 1023px) --- */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -164,10 +151,9 @@ footer {
     header h1 { font-size: 2.5em; }
     .hero h2 { font-size: 2em; }
 
-    /* Adjust background classes for this breakpoint if necessary */
-    .background-microbunker {
-         /* background-size: 100% auto; /* Keep consistent or adjust */
-         /* background-position: center top; /* Keep consistent or adjust */
+    /* Adjust navigation spacing for tablets if needed */
+    nav li {
+        margin: 0 10px; /* Slightly less space than desktop */
     }
 }
 
@@ -179,13 +165,7 @@ footer {
 
     header h1 { font-size: 3em; }
     .hero h2 { font-size: 2.2em; }
-    nav li { margin: 0 20px; }
-
-    /* Adjust background classes for this breakpoint if necessary */
-    .background-microbunker {
-         /* background-size: 100% auto; /* Keep consistent or adjust */
-         /* background-position: center top; /* Keep consistent or adjust */
-    }
+    nav li { margin: 0 20px; } /* More space on desktop */
 }
 
 /* --- Optimization for Phones (up to 767px) --- */
@@ -199,9 +179,19 @@ footer {
         word-break: break-word;
     }
 
+    /* Stack navigation links vertically on phones */
+    nav ul {
+        flex-direction: column; /* Stack flex items vertically */
+        align-items: center; /* Center stacked items horizontally */
+    }
+
     nav li {
-        display: block;
-        margin: 10px 0;
+        display: block; /* Ensure list items take full width for centering */
+        margin: 5px 0; /* Add vertical space between stacked links */
+    }
+
+    nav a {
+        padding: 8px 15px; /* Add more padding to make links easier to tap */
     }
 
     .hero { padding: 30px 15px; }
@@ -209,14 +199,6 @@ footer {
     .hero p { font-size: 1em; }
     .content-section h2 { font-size: 1.3em; }
     footer { font-size: 0.8em; }
-
-    /* Adjust background classes for this breakpoint if necessary */
-    .background-microbunker {
-         /* background-size: 100% auto; /* Keep consistent or adjust */
-         /* background-position: center top; /* Keep consistent or adjust */
-         /* On mobile, 'cover' might be preferred visually, but '100% auto'
-            maintains the aspect ratio and touches left/right as requested. */
-    }
 }
 
 /* === End of style.css === */
