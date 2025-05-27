@@ -1,17 +1,19 @@
+--- START OF FILE vikingbrawl.html ---
+
 <!DOCTYPE html>
 <!--
     vikingbrawl.html
 
     This is the HTML file for the Viking Brawl page on the Micro Bunker website.
     It uses the same structure and styling as index.html but loads
-    its specific menu (menuvb.html) and has content specific to Cowpoke.
+    its specific menu (menuvb.html) and has content specific to Viking Brawl.
 -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Micro Bunker | Viking Brawl</title> <!-- <<< CHANGED TITLE HERE -->
-    <!-- Updated title for the Cowpoke page -->
+    <!-- Updated title for the Viking Brawl page -->
 
     <!-- Link to the external CSS file for styling (same style.css for all pages) -->
     <link rel="stylesheet" href="style.css">
@@ -56,23 +58,23 @@
     </header>
 
     <main>
-        <!-- Main content area specific to the Cowpoke page -->
+        <!-- Main content area specific to the Viking Brawl page -->
 
         <section class="hero">
-            <!-- Hero section for the Cowpoke page -->
-            <h2>Saddle Up for Cowpoke!</h2>
-            <p>Experience the wild west in this unique game.</p>
-            <!-- Add more content specific to Cowpoke here -->
+            <!-- Hero section for the Viking Brawl page -->
+            <h2>Enter the Viking Brawl!</h2> <!-- <<< Updated heading for Viking Brawl -->
+            <p>Gather your warband and prepare for glorious combat in this miniature skirmish game!</p> <!-- <<< Updated paragraph for Viking Brawl -->
+            <!-- Add more content specific to Viking Brawl here -->
         </section>
 
         <section class="content-section">
-             <!-- Another section for Cowpoke details -->
-            <h2>About Cowpoke</h2>
-            <p>Learn about the features, characters, and setting of Cowpoke.</p>
+             <!-- Another section for Viking Brawl details -->
+            <h2>About Viking Brawl Miniatures</h2> <!-- <<< Updated heading for Viking Brawl -->
+            <p>Viking Brawl is a fast-paced miniature game where players command small warbands of Vikings, Saxons, and other warriors in brutal skirmishes. Build your force, choose your tactics, and claim victory for your clan!</p> <!-- <<< Updated paragraph for Viking Brawl -->
             <!-- Add details about the game -->
         </section>
 
-        <!-- Add more sections specific to Cowpoke as needed -->
+        <!-- Add more sections specific to Viking Brawl as needed -->
 
     </main>
 
@@ -88,7 +90,7 @@
     -->
     <script>
         async function loadMenu() {
-            try
+            try {
                 const response = await fetch('menuvb.html'); // Corrected fetch target
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
