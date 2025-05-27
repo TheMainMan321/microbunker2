@@ -2462,7 +2462,7 @@ input, select, textarea {
 /* Force header background image and override other backgrounds */
 .header-bg {
     background-image: url('images/mb1.png') !important;
-    background-size: cover !important;
+    background-size: contain !important;      /* changed from cover */
     background-position: center !important;
     background-repeat: no-repeat !important;
     min-height: 300px;
