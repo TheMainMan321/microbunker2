@@ -10,6 +10,8 @@
     We are now using a CSS variable (--page-background-image) defined on the
     body element in each HTML file to specify the background image URL.
     The styling properties (size, position, etc.) are defined here in style.css.
+
+    Added styles for dropdown menus.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
@@ -20,50 +22,15 @@
 }
 
 /* === 2. Body Styles (Background Color, Image using Variable, Base Font) === */
-/*
-    Styles applied to the <body> affect the entire visible page.
-*/
 body {
-    font-family: sans-serif; /* Sets a common, readable font */
-    line-height: 1.6; /* Improves text readability by adding space between lines */
-    color: #333; /* Sets a default text color (dark grey) */
-
-    /* --- Background --- */
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #333;
     background-color: #333; /* Dark gray background color underneath everything */
-    /* This color will be visible if the image doesn't load or doesn't cover the whole area. */
-
-    /*
-        Use the CSS variable '--page-background-image' defined on the body element
-        in the HTML file. If the variable is not set (e.g., on a page without the style attribute),
-        the fallback value 'none' will be used, meaning no background image.
-    */
-    background-image: var(--page-background-image, none);
-
-    background-repeat: no-repeat; /* Prevent tiling for the background image */
-
-    /*
-        background-size: 100% auto;
-        - '100%': Makes the image width 100% of the body's width (which fills the pane).
-        - 'auto': Scales the height proportionally to maintain the image's aspect ratio (like 16:9).
-        This ensures the image spans left-to-right and preserves its aspect ratio without cropping.
-        It might result in vertical scrolling if the image is taller than the viewport,
-        or empty space below if it's shorter.
-    */
-    background-size: 100% auto;
-
-    /*
-        background-position: center top;
-        Positions the image horizontally centered and aligned to the top.
-        You could use 'center center' to center it both ways.
-    */
+    background-image: var(--page-background-image, none); /* Use CSS variable for image */
+    background-repeat: no-repeat;
+    background-size: 100% auto; /* Span left-right, maintain aspect ratio */
     background-position: center top;
-
-    /*
-        background-attachment: fixed;
-        (Optional - keep if you want the parallax effect, remove if you want it to scroll)
-        Keeps the background image fixed in the viewport while content scrolls over it.
-        If you remove this, the image will scroll with the page content.
-    */
     background-attachment: fixed; /* Or 'scroll' */
 }
 
@@ -90,21 +57,29 @@ header h1 {
     color: #fff;
 }
 
-/* === 4. Navigation Menu Styles === */
+/* === 4. Navigation Menu Styles (Including Dropdowns) === */
+/*
+    Styles for the navigation menu loaded into #menu-placeholder.
+    These styles apply to the main horizontal menu and the dropdowns.
+*/
 #menu-placeholder nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: center;
+    display: flex; /* Makes main menu items horizontal */
+    justify-content: center; /* Center main menu items horizontally */
     align-items: center;
     flex-wrap: wrap;
 }
 
+/* Style for main menu list items */
 #menu-placeholder nav li {
-    margin-left: 20px;
+    margin-left: 20px; /* Space between main menu items */
+    position: relative; /* Needed for positioning the dropdown relative to the list item */
+    /* display: inline-block; /* Flex items don't strictly need this */
 }
 
+/* Style for main menu links */
 #menu-placeholder nav a {
     text-decoration: none;
     color: #fff;
@@ -118,7 +93,55 @@ header h1 {
     color: #007bff;
 }
 
+/* --- Dropdown Menu Styles --- */
+
+/* Hide the dropdown menus by default */
+#menu-placeholder nav ul li .dropdown {
+    display: none; /* Hide the nested ul */
+    position: absolute; /* Position relative to the parent li */
+    top: 100%; /* Place the top edge of the dropdown right below the parent li */
+    left: 0; /* Align the left edge of the dropdown with the parent li */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background for dropdown */
+    min-width: 180px; /* Minimum width for the dropdown */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Add a subtle shadow */
+    z-index: 1; /* Ensure dropdown appears above other content */
+    padding: 10px 0; /* Vertical padding inside the dropdown box */
+    border-radius: 0 0 8px 8px; /* Optional: Round the bottom corners */
+    list-style: none; /* Remove bullets from dropdown list */
+    margin: 0; /* Remove default margin */
+}
+
+/* Style for list items within the dropdown */
+#menu-placeholder nav ul li .dropdown li {
+    display: block; /* Make dropdown items stack vertically */
+    margin: 0; /* Remove horizontal margin */
+    padding: 0; /* Remove padding */
+}
+
+/* Style for links within the dropdown */
+#menu-placeholder nav ul li .dropdown li a {
+    color: #fff; /* Link color in dropdown */
+    padding: 8px 16px; /* Padding for dropdown links */
+    text-decoration: none;
+    display: block; /* Make the link fill the width for easier clicking */
+    font-weight: normal; /* Make dropdown links not bold */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Style for links within the dropdown on hover */
+#menu-placeholder nav ul li .dropdown li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Subtle background highlight on hover */
+    color: #007bff; /* Change text color on hover */
+}
+
+/* Show the dropdown menu when the parent list item is hovered */
+#menu-placeholder nav ul li.has-dropdown:hover > .dropdown {
+    display: block; /* Show the nested ul with class 'dropdown' */
+}
+
 /* Style for the <noscript> fallback menu */
+/* This ensures the fallback menu also looks decent if JS is off */
+/* Note: Dropdowns won't work in the <noscript> fallback without JS */
 noscript nav ul {
      list-style: none;
      padding: 0;
@@ -182,24 +205,55 @@ footer {
     header { padding: 10px 15px; }
     .header-container { flex-direction: column; align-items: flex-start; }
     header h1 { font-size: 1.5em; margin-bottom: 10px; }
-    #menu-placeholder nav ul, noscript nav ul { flex-direction: column; align-items: flex-start; width: 100%; }
-    #menu-placeholder nav li, noscript nav li { margin: 5px 0; margin-left: 0; width: 100%; }
-    #menu-placeholder nav a, noscript nav a { padding: 8px 15px; width: 100%; }
+
+    /* Stack main menu items vertically on phones */
+    #menu-placeholder nav ul, noscript nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    #menu-placeholder nav li, noscript nav li {
+        margin: 5px 0;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    #menu-placeholder nav a, noscript nav a {
+        padding: 8px 15px;
+        width: 100%;
+    }
+
+    /* --- Dropdown adjustments for phones --- */
+    /* Dropdowns should appear below their parent, but might need full width */
+    #menu-placeholder nav ul li .dropdown {
+        position: static; /* Remove absolute positioning */
+        top: auto; /* Remove top positioning */
+        left: auto; /* Remove left positioning */
+        width: 100%; /* Make dropdown take full width */
+        min-width: auto; /* Remove min-width constraint */
+        background-color: rgba(0, 0, 0, 0.5); /* Slightly lighter background for nested items */
+        box-shadow: none; /* Remove shadow */
+        border-radius: 0; /* Remove border radius */
+        padding: 0 10px; /* Add horizontal padding */
+    }
+
+    #menu-placeholder nav ul li .dropdown li a {
+        padding: 8px 25px; /* Indent dropdown links */
+    }
+
+    /* Show dropdowns on phones - they will just be part of the stacked list */
+    /* The :hover rule might not work well on touch screens, but display: block
+       is handled by the parent li's display: block */
+    #menu-placeholder nav ul li.has-dropdown > .dropdown {
+         display: block; /* Always show dropdown on mobile when parent is stacked */
+    }
+
+
     main { padding: 0 10px; }
     main section { padding: 15px; }
     main section h2 { font-size: 1.3em; }
     footer { padding: 15px; font-size: 0.8em; }
-
-    /*
-        Responsive adjustment for background size on small screens if needed.
-        Using 100% auto might be too tall on mobile. 'cover' is an alternative
-        that fills the screen but crops. Let's stick to 100% auto for consistency
-        with the "no cropping" requirement, but you could override it here.
-    */
-    body {
-        background-size: 100% auto; /* Keep consistent or change to 'cover' */
-        background-position: center top; /* Adjust vertical position for mobile */
-    }
 }
 
 /* --- Optimization for Tablets (768px to 1023px) --- */
@@ -212,6 +266,11 @@ footer {
     main section { padding: 20px; }
     main section h2 { font-size: 1.5em; }
     footer { max-width: 960px; margin: 20px auto 0; padding: 20px 25px; }
+
+    /* Dropdown adjustments for tablets if needed */
+    #menu-placeholder nav ul li .dropdown {
+        min-width: 160px; /* Adjust dropdown width for tablets */
+    }
 }
 
 /* --- Optimization for Desktops (1024px and above) --- */
@@ -224,6 +283,11 @@ footer {
     main section { padding: 25px; }
     main section h2 { font-size: 1.8em; }
     footer { max-width: 1200px; margin: 20px auto 0; padding: 20px 30px; }
+
+    /* Dropdown adjustments for desktops */
+    #menu-placeholder nav ul li .dropdown {
+        min-width: 180px; /* Standard desktop dropdown width */
+    }
 }
 
 

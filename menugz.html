@@ -3,11 +3,12 @@
 
     This file contains the HTML structure for the main navigation menu
     specifically for the Gamma Zone page.
+    It includes nested lists for dropdown sub-menus.
     It is designed to be loaded and inserted into gammazone.html
     using JavaScript or Server-Side Includes.
 
     It contains a <nav> element with an unordered list (<ul>) of links (<a>).
-    Initially, it's an exact copy of menumb.html.
+    Some list items (<li>) contain nested <ul> elements for dropdowns.
 -->
 <nav>
     <!--
@@ -17,14 +18,61 @@
     <ul>
         <!--
             <ul>
-            Represents an unordered list of items.
+            Represents the main unordered list of menu items.
         -->
         <li><a href="index.html">Micro Bunker</a></li>
         <!-- Link back to the homepage -->
-        <li><a href="gammazone.html">Gamma Zone</a></li>
-        <li><a href="vikingbrawl.html">Viking Brawl</a></li>
-        <li><a href="cowpoke.html">Cowpoke</a></li>
-        <li><a href="othergames.html">Other Games</a></li>
-        <!-- Add more menu items here as needed -->
+
+        <!-- Main menu item: The Rules -->
+        <li><a href="#">The Rules</a></li>
+        <!-- Note: href="#" is a placeholder. Replace with actual link to Rules page. -->
+
+        <!-- Main menu item: Scenarios (with dropdown) -->
+        <li class="has-dropdown">
+            <!-- Add a class like 'has-dropdown' to easily target items with dropdowns in CSS -->
+            <a href="#">Scenarios</a>
+            <!-- Note: href="#" is a placeholder. This link might go to a Scenarios overview page, or just act as a toggle. -->
+            <!-- Nested list for the dropdown menu -->
+            <ul class="dropdown">
+                <!-- Add a class 'dropdown' to style the sub-menu -->
+                <li><a href="#">Scenario 1</a></li>
+                <!-- Note: href="#" placeholders. Replace with actual links to scenario pages. -->
+                <li><a href="#">Scenario 2</a></li>
+                <li><a href="#">Scenario 3</a></li>
+                <li><a href="#">Scenario 4</a></li>
+                <li><a href="#">Scenario 5</a></li>
+            </ul>
+        </li>
+
+        <!-- Main menu item: Resources (with dropdown) -->
+        <li class="has-dropdown">
+            <a href="#">Resources</a>
+            <!-- Note: href="#" placeholder. -->
+            <ul class="dropdown">
+                <li><a href="#">Quick Reference Sheets</a></li>
+                <!-- Note: href="#" placeholders. -->
+                <li><a href="#">Tools</a></li>
+            </ul>
+        </li>
+
+        <!-- Main menu item: Tales From the Zone Podcast (with dropdown) -->
+        <li class="has-dropdown">
+            <a href="#">Tales From the Zone Podcast</a>
+            <!-- Note: href="#" placeholder. -->
+            <ul class="dropdown">
+                <li><a href="#">Podcast 1</a></li>
+                <!-- Note: href="#" placeholders. -->
+                <li><a href="#">Podcast 2</a></li>
+                <li><a href="#">Podcast 3</a></li>
+            </ul>
+        </li>
+
+        <!-- Add more main menu items here if needed -->
+        <!-- Example: <li><a href="vikingbrawl.html">Viking Brawl</a></li> -->
+        <!-- Note: The original menu items like Viking Brawl, Cowpoke, Other Games
+             were removed as per the new structure request. If you want them back
+             as main menu items, add them here. If they should be in the dropdowns,
+             add them there. The request implies they are replaced by the new structure. -->
+
     </ul>
 </nav>
