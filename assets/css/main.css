@@ -2458,3 +2458,13 @@ input, select, textarea {
         min-height: 150px; /* Responsive height for small screens */
     }
 }
+
+/* Force header background image and override other backgrounds */
+.header-bg {
+    background-image: url('images/mb1.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    min-height: 300px;
+    position: relative;
+}
