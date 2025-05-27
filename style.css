@@ -1,204 +1,344 @@
 /*
     style.css
 
-    This file contains the CSS rules to style the website.
-    It is linked in the <head> section of index.html using:
-    <link rel="stylesheet" href="style.css">
+    This file contains the CSS rules to style the Micro Bunker website.
+    It is linked in the <head> section of index.html.
 
-    We've moved background image properties into specific classes
-    so different HTML pages can apply different backgrounds using these classes.
+    CSS selectors target HTML elements (body, h1, p), classes (.hero, .content-section),
+    and IDs (#menu-placeholder) to apply styles (colors, fonts, layout, etc.).
 */
 
 /* === 1. Basic Reset and Box Sizing === */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* === 2. Body Styles (Base Font, Color, etc.) === */
-body {
-    font-family: sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4; /* Fallback background color */
-    background-attachment: scroll;
-}
-
-/* === 3. Background Image Classes === */
-/* Define classes for each specific background image */
-.background-microbunker {
-    background-image: url('/images/microbunker.png');
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: center top;
-}
-
-/* === 4. General Layout and Spacing === */
-header, main, footer {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-}
-
-/* Add a background color to content sections for readability */
-header, main section, footer {
-    background-color: rgba(255, 255, 255, 0.9); /* White with 90% opacity */
-    margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 8px;
-}
-
-main {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-header {
-    text-align: center; /* Centers the h1 and the #menu-placeholder/nav */
-    padding-bottom: 10px;
-}
-
-/* Style the menu placeholder if needed */
-#menu-placeholder {
-    margin-top: 10px; /* Space between title and menu */
-    /* The nav element loaded inside will inherit styles or be targeted directly */
-}
-
-/* === 5. Navigation Menu Styles === */
 /*
-    These styles target the <nav> element and its contents,
-    whether it's the fallback <nav> in <noscript> or the <nav>
-    loaded via JavaScript into #menu-placeholder.
+    A simple reset to remove default browser styling inconsistencies
+    and set box-sizing for easier layout calculations.
 */
-nav ul {
+*, *::before, *::after {
+    /*
+        The universal selector (*) selects all elements.
+        box-sizing: border-box; includes padding and border in the element's total width/height.
+    */
+    box-sizing: border-box;
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+}
+
+/* === 2. Body Styles (Background Color and Image, Base Font) === */
+/*
+    Styles applied to the <body> affect the entire visible page.
+*/
+body {
+    font-family: sans-serif; /* Sets a common, readable font */
+    line-height: 1.6; /* Improves text readability by adding space between lines */
+    color: #333; /* Sets a default text color (dark grey) */
+
+    /* --- Background --- */
+    background-color: #333; /* Dark gray background color underneath everything */
+    /* This color will be visible if the image doesn't load or doesn't cover the whole area. */
+
+    background-image: url('/images/microbunker.png'); /* Specifies the path to your image */
+    /*
+        NOTE: The path 'url('/images/microbunker.png')' is relative to the domain root.
+        If your 'images' folder is in the same directory as index.html and style.css,
+        the path should be 'url('images/microbunker.png')'.
+        If style.css is in a 'css' subfolder, it would be 'url('../images/microbunker.png')'.
+        **Verify this path based on your actual file structure.**
+    */
+
+    background-repeat: no-repeat; /* Prevents the image from tiling */
+
+    /*
+        background-size: cover;
+        Scales the image to be as large as possible without stretching,
+        such that the background area is completely covered by the background image.
+        Some parts of the background image may not be visible in the background
+        positioning area. This ensures the image fills the screen.
+    */
+    background-size: cover;
+
+    /*
+        background-position: center center;
+        Centers the background image both horizontally and vertically within the container.
+    */
+    background-position: center center;
+
+    /*
+        background-attachment: fixed;
+        The background image will not scroll with the content.
+        This creates a common parallax-like effect where the content scrolls over a static background.
+    */
+    background-attachment: fixed;
+}
+
+/* === 3. Header Layout (Title and Menu Positioning) === */
+/*
+    Styles for the header area containing the title and navigation.
+*/
+header {
+    /*
+        We'll use flexbox on the header-container inside the header
+        to position the title and menu.
+    */
+    padding: 10px 20px; /* Add padding around the header content */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background for the header bar */
+    /* This helps the title and menu stand out against the background image. */
+    color: #fff; /* Set text color to white for contrast */
+    position: relative; /* Needed for z-index */
+    z-index: 10; /* Ensure header is above other content and background */
+}
+
+.header-container {
+    display: flex; /* Enable flexbox layout */
+    justify-content: space-between; /* Pushes the first item (h1) to the left and the last item (#menu-placeholder) to the right */
+    align-items: center; /* Vertically centers the items (h1 and #menu-placeholder) */
+    max-width: 1200px; /* Optional: Limit width on large screens */
+    margin: 0 auto; /* Center the container if max-width is set */
+}
+
+header h1 {
+    font-size: 2em; /* Size of the main title */
+    margin: 0; /* Remove default h1 margin */
+    color: #fff; /* Ensure title is white */
+}
+
+/* === 4. Navigation Menu Styles === */
+/*
+    Styles for the navigation menu loaded into #menu-placeholder.
+*/
+#menu-placeholder nav ul {
     list-style: none; /* Removes default bullet points */
     padding: 0; /* Removes default padding */
-    /*
-        To center the list items horizontally within the nav/header,
-        we can use flexbox on the ul and center the items.
-        Alternatively, if the nav is treated as an inline-block element
-        or has display: block with margin: auto, text-align: center on the header works.
-        Let's use flexbox for explicit centering of the list items.
-    */
-    display: flex; /* Enable flexbox for the ul */
-    justify-content: center; /* Center flex items (li) horizontally */
-    flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
+    margin: 0; /* Removes default margin */
+    display: flex; /* Enable flexbox for the list items */
+    /* justify-content: flex-end; /* Already handled by header-container space-between */
+    align-items: center; /* Vertically center menu items */
+    flex-wrap: wrap; /* Allow menu items to wrap to the next line on smaller screens */
 }
 
-nav li {
-    display: inline-block; /* Keep list items horizontal by default */
-    /* Note: display: flex on the ul makes the li elements flex items,
-             so display: inline-block here might be redundant or behave
-             slightly differently depending on context. Let's rely on flexbox. */
-    /* display: list-item; /* Revert to default list item behavior if needed */
-    margin: 0 15px; /* Adds horizontal space between menu items */
+#menu-placeholder nav li {
+    /* display: inline-block; /* Flex items don't need inline-block */
+    margin-left: 20px; /* Add space to the left of each menu item */
+    /* margin: 0 10px; /* Alternative: add space on both sides */
 }
 
-nav a {
+#menu-placeholder nav a {
     text-decoration: none; /* Removes the default underline from links */
-    color: #007bff; /* Sets a link color (blue) */
+    color: #fff; /* Sets link color to white */
     font-weight: bold; /* Makes link text bold */
-    padding: 5px 0; /* Add some padding around the link text */
+    padding: 5px 10px; /* Add padding around the link text for click area */
     display: inline-block; /* Ensures padding works correctly */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
-nav a:hover {
-    text-decoration: underline; /* Adds underline on hover for user feedback */
+#menu-placeholder nav a:hover {
+    color: #007bff; /* Change link color on hover (e.g., to blue) */
+    /* text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+/* Style for the <noscript> fallback menu */
+/* This ensures the fallback menu also looks decent if JS is off */
+noscript nav ul {
+     list-style: none;
+     padding: 0;
+     margin: 0;
+     display: flex;
+     justify-content: flex-end; /* Position fallback menu to the right */
+     align-items: center;
+     flex-wrap: wrap;
+}
+
+noscript nav li {
+    margin-left: 20px;
+}
+
+noscript nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 10px;
+    display: inline-block;
 }
 
 
-/* === 6. Content Section Styles === */
-.hero {
-    text-align: center;
-    padding: 50px 20px;
+/* === 5. Main Content Area Styles === */
+/*
+    Styles for the <main> element and sections within it.
+    We add padding and a semi-transparent background for readability over the image.
+*/
+main {
+    max-width: 1200px; /* Limit width on large screens */
+    margin: 20px auto; /* Center the main content and add vertical space */
+    padding: 0 20px; /* Add horizontal padding inside main */
+    position: relative;
+    z-index: 1; /* Ensure main content is above the background */
 }
 
-.hero h2 {
-    color: #333;
-    margin-bottom: 15px;
+main section {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for content blocks */
+    padding: 20px; /* Add padding inside each section */
+    margin-bottom: 20px; /* Add space between sections */
+    border-radius: 8px; /* Optional: Rounded corners */
 }
 
-.hero p {
-    font-size: 1.1em;
-    margin-bottom: 20px;
+main section h2 {
+    color: #333; /* Heading color */
+    margin-bottom: 15px; /* Space below heading */
 }
 
-.content-section h2 {
-    color: #333;
-    margin-bottom: 15px;
-}
-
-/* === 7. Footer Styles === */
+/* === 6. Footer Styles === */
+/*
+    Styles for the <footer> element.
+*/
 footer {
-    text-align: center;
-    padding-top: 20px;
-    font-size: 0.9em;
-    color: #555;
+    text-align: center; /* Center footer text */
+    padding: 20px; /* Add padding around footer content */
+    font-size: 0.9em; /* Smaller font size for footer text */
+    color: #ccc; /* Lighter color for footer text */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background for footer */
+    position: relative;
+    z-index: 1; /* Ensure footer is above the background */
 }
 
 
-/* === 8. Responsive Design (Media Queries) === */
-
-/* --- Optimization for Tablets and Smaller Desktops (768px to 1023px) --- */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    header, main, footer {
-        padding: 25px;
-    }
-
-    header h1 { font-size: 2.5em; }
-    .hero h2 { font-size: 2em; }
-
-    /* Adjust navigation spacing for tablets if needed */
-    nav li {
-        margin: 0 10px; /* Slightly less space than desktop */
-    }
-}
-
-/* --- Optimization for Desktop PCs (1024px and above) --- */
-@media screen and (min-width: 1024px) {
-    header, main, footer {
-        padding: 30px;
-    }
-
-    header h1 { font-size: 3em; }
-    .hero h2 { font-size: 2.2em; }
-    nav li { margin: 0 20px; } /* More space on desktop */
-}
+/* === 7. Responsive Adjustments (Media Queries) === */
+/*
+    Adjust styles for smaller screens.
+*/
 
 /* --- Optimization for Phones (up to 767px) --- */
 @media screen and (max-width: 767px) {
-    header, main, footer {
-        padding: 15px;
+    /* Adjust header layout for small screens */
+    .header-container {
+        flex-direction: column; /* Stack title and menu vertically */
+        align-items: flex-start; /* Align items to the left */
     }
 
     header h1 {
-        font-size: 2em;
-        word-break: break-word;
+        font-size: 1.5em; /* Smaller title font size */
+        margin-bottom: 10px; /* Add space below the title */
     }
 
     /* Stack navigation links vertically on phones */
-    nav ul {
-        flex-direction: column; /* Stack flex items vertically */
-        align-items: center; /* Center stacked items horizontally */
+    #menu-placeholder nav ul,
+    noscript nav ul {
+        flex-direction: column; /* Stack list items vertically */
+        align-items: flex-start; /* Align links to the left */
+        width: 100%; /* Make the ul take full width */
     }
 
-    nav li {
-        display: block; /* Ensure list items take full width for centering */
+    #menu-placeholder nav li,
+    noscript nav li {
         margin: 5px 0; /* Add vertical space between stacked links */
+        margin-left: 0; /* Remove left margin when stacked */
+        width: 100%; /* Make list items take full width */
     }
 
-    nav a {
+    #menu-placeholder nav a,
+    noscript nav a {
         padding: 8px 15px; /* Add more padding to make links easier to tap */
+        width: 100%; /* Make links fill the list item width */
     }
 
-    .hero { padding: 30px 15px; }
-    .hero h2 { font-size: 1.5em; }
-    .hero p { font-size: 1em; }
-    .content-section h2 { font-size: 1.3em; }
-    footer { font-size: 0.8em; }
+    /* Adjust main content padding */
+    main {
+        padding: 0 10px; /* Less horizontal padding on small screens */
+    }
+
+    main section {
+        padding: 15px; /* Less padding inside sections */
+    }
+
+    main section h2 {
+        font-size: 1.3em; /* Smaller heading size */
+    }
+
+    footer {
+        padding: 15px; /* Less padding in footer */
+        font-size: 0.8em; /* Smaller footer font size */
+    }
 }
+
+/* --- Optimization for Tablets (768px to 1023px) --- */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    /* Adjust header padding */
+    header {
+        padding: 15px 25px;
+    }
+
+    .header-container {
+         max-width: 960px; /* Adjust max-width for tablets */
+    }
+
+    header h1 {
+        font-size: 1.8em; /* Slightly smaller title */
+    }
+
+    #menu-placeholder nav li,
+    noscript nav li {
+        margin-left: 15px; /* Adjust menu item spacing */
+    }
+
+    /* Adjust main content padding */
+    main {
+        max-width: 960px; /* Adjust max-width for tablets */
+        padding: 0 25px;
+    }
+
+    main section {
+        padding: 20px;
+    }
+
+    main section h2 {
+        font-size: 1.5em;
+    }
+
+    footer {
+        max-width: 960px; /* Adjust max-width for tablets */
+        margin: 20px auto 0;
+        padding: 20px 25px;
+    }
+}
+
+/* --- Optimization for Desktops (1024px and above) --- */
+@media screen and (min-width: 1024px) {
+    /* Header padding */
+    header {
+        padding: 20px 30px;
+    }
+
+     .header-container {
+         max-width: 1200px; /* Keep desktop max-width */
+    }
+
+    header h1 {
+        font-size: 2em; /* Standard desktop title size */
+    }
+
+    #menu-placeholder nav li,
+    noscript nav li {
+        margin-left: 20px; /* Standard desktop menu spacing */
+    }
+
+    /* Main content padding */
+    main {
+        max-width: 1200px; /* Keep desktop max-width */
+        padding: 0 30px;
+    }
+
+    main section {
+        padding: 25px; /* Slightly more padding inside sections */
+    }
+
+    main section h2 {
+        font-size: 1.8em; /* Standard desktop heading size */
+    }
+
+     footer {
+        max-width: 1200px; /* Keep desktop max-width */
+        margin: 20px auto 0;
+        padding: 20px 30px;
+    }
+}
+
 
 /* === End of style.css === */

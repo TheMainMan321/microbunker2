@@ -1,40 +1,35 @@
 <!DOCTYPE html>
 <!--
-    <!DOCTYPE html>
-    This declaration tells the browser that this document is an HTML5 document.
-    It's crucial for ensuring the browser renders the page in standards mode.
+    index.html
+
+    This is the main HTML file for the Micro Bunker website homepage.
+    It defines the structure and content of the page.
 -->
 <html lang="en">
 <!--
-    <html lang="en">
-    This is the root element of an HTML page.
-    The 'lang="en"' attribute specifies the language of the document content.
+    The <html> element is the root of the HTML page.
+    lang="en" specifies the language of the document.
 -->
 <head>
     <!--
         <head>
-        Contains meta-information about the document.
+        Contains meta-information about the HTML document, not visible content.
     -->
     <meta charset="UTF-8">
-    <!-- Specifies the character encoding -->
+    <!-- Specifies the character encoding for the document (UTF-8 supports most characters). -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Configures the viewport for responsive design -->
+    <!-- Configures the viewport for responsive design on different devices. -->
     <title>Micro Bunker | Home</title>
-    <!-- Sets the title in the browser tab. Updated to "Micro Bunker". -->
+    <!-- Sets the title displayed in the browser tab. -->
 
-    <!-- Link to our external CSS file -->
+    <!-- Link to the external CSS file for styling -->
     <link rel="stylesheet" href="style.css">
-    <!-- This links this HTML file to style.css for styling. -->
+    <!-- This links this HTML file to style.css, applying its styles. -->
 
     <!-- You can add other things here like favicons, other meta tags, etc. -->
 
 </head>
-<!--
-    Add the CSS class 'background-microbunker' to the body tag.
-    This class is defined in style.css and contains the background image properties
-    specific to this page.
--->
-<body class="background-microbunker">
+<body>
     <!--
         <body>
         Contains all the visible content of the web page.
@@ -43,39 +38,43 @@
     <header>
         <!--
             <header>
-            Represents introductory content, typically containing site title and navigation.
+            Represents introductory content, typically containing the site title and navigation.
+            We'll use CSS to position the title and menu within this header.
         -->
-        <h1>Micro Bunker</h1>
-        <!--
-            <h1>
-            The main title of the page. Updated to "Micro Bunker".
-        -->
-
-        <!--
-            Placeholder for the navigation menu.
-            The JavaScript code at the end of the body will fetch the content
-            of menumb.html and insert it into this div.
-            We give it an ID so JavaScript can easily find it.
-        -->
-        <div id="menu-placeholder">
+        <div class="header-container">
+            <!-- A container div to help with positioning title and menu using CSS -->
+            <h1>Micro Bunker</h1>
             <!--
-                Optional: Add a fallback navigation here for users with JavaScript disabled.
-                This content will be replaced by the loaded menumb.html if JS is enabled.
+                <h1>
+                The main title of the page, positioned on the top left via CSS.
             -->
-            <noscript>
+
+            <!--
+                Placeholder for the navigation menu.
+                The JavaScript code at the end of the body will fetch the content
+                of menumb.html and insert it into this div.
+                We give it an ID so JavaScript can easily find it.
+            -->
+            <div id="menu-placeholder">
                 <!--
-                    <noscript> tag content is displayed only if JavaScript is disabled.
-                    This provides basic navigation functionality even without JS.
+                    Optional: Add a fallback navigation here for users with JavaScript disabled.
+                    This content will be replaced by the loaded menumb.html if JS is enabled.
                 -->
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Micro Bunker</a></li>
-                        <li><a href="gamma-zone.html">Gamma Zone</a></li>
-                        <li><a href="viking-brawl.html">Viking Brawl</a></li>
-                        <li><a href="cowpoke.html">Cowpoke</a></li>
-                    </ul>
-                </nav>
-            </noscript>
+                <noscript>
+                    <!--
+                        <noscript> tag content is displayed only if JavaScript is disabled.
+                        This provides basic navigation functionality even without JS.
+                    -->
+                    <nav>
+                        <ul>
+                            <li><a href="gamma-zone.html">Gamma Zone</a></li>
+                            <li><a href="viking-brawl.html">Viking Brawl</a></li>
+                            <li><a href="cowpoke.html">Cowpoke</a></li>
+                            <li><a href="other-games.html">Other Games</a></li>
+                        </ul>
+                    </nav>
+                </noscript>
+            </div>
         </div>
     </header>
 
@@ -83,22 +82,21 @@
         <!--
             <main>
             Represents the dominant content of the <body>.
+            This is where the main unique content of the page goes.
         -->
 
         <section class="hero">
-            <!-- Hero section content -->
-            <h2>Your Catchy Headline</h2>
-            <p>A brief description of your website or what you offer.</p>
-            <!-- Maybe a call-to-action button -->
-            <!-- <button>Learn More</button> -->
+            <!-- A section for a prominent hero/banner area -->
+            <h2>Welcome to Micro Bunker!</h2>
+            <p>Explore the worlds of Gamma Zone, Viking Brawl, Cowpoke, and more.</p>
+            <!-- Add more content specific to the homepage here -->
         </section>
 
         <section class="content-section">
              <!-- Another section for general content -->
-            <h2>Section Title</h2>
-            <p>This is where you can add more information, list your services, showcase features,
-               include testimonials, or any other content relevant to this part of the page.</p>
-            <!-- Add more paragraphs, images, lists, etc. here. -->
+            <h2>About Our Games</h2>
+            <p>Discover unique gaming experiences crafted with passion.</p>
+            <!-- Add descriptions of games, features, etc. -->
         </section>
 
         <!-- Add more sections as needed for different content blocks -->
@@ -108,10 +106,15 @@
     <footer>
         <!--
             <footer>
-            Represents the footer content.
+            Represents the footer content for the page.
+            Typically contains copyright, links to legal pages, etc.
         -->
         <p>© <span id="current-year"></span> Micro Bunker. All rights reserved.</p>
-        <!-- Updated copyright text -->
+        <!--
+            © is the HTML entity for the copyright symbol.
+            <span id="current-year"></span> is a placeholder for the year,
+            which will be filled by the JavaScript below.
+        -->
         <!-- Add other footer links/content here if needed -->
     </footer>
 
@@ -124,19 +127,20 @@
         /*
             Async function to fetch the content of menumb.html
             and insert it into the element with id="menu-placeholder".
+            This allows the menu HTML to be managed in a separate file.
         */
         async function loadMenu() {
             try {
-                // Fetch the menumb.html file
+                // Fetch the menumb.html file from the same directory
                 const response = await fetch('menumb.html');
 
-                // Check if the fetch was successful (status code 200-299)
+                // Check if the fetch was successful (HTTP status 200-299)
                 if (!response.ok) {
-                    // If not successful, throw an error
+                    // If not successful, log an error and stop
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
-                // Get the response body as text
+                // Get the response body as text (the HTML content)
                 const menuHtml = await response.text();
 
                 // Find the placeholder element by its ID
@@ -144,7 +148,7 @@
 
                 // If the placeholder element is found
                 if (menuPlaceholder) {
-                    // Insert the fetched HTML content into the placeholder
+                    // Insert the fetched HTML content into the placeholder div
                     menuPlaceholder.innerHTML = menuHtml;
                 } else {
                     // Log a warning if the placeholder element was not found
@@ -154,7 +158,7 @@
             } catch (error) {
                 // Catch any errors during the fetch or insertion process
                 console.error('Failed to load menu:', error);
-                // Optionally, you could display a message to the user or load a static fallback menu here
+                // The <noscript> fallback menu will be visible if JS fails or is disabled.
             }
         }
 
@@ -163,10 +167,11 @@
 
         /*
             Simple script to update the copyright year automatically.
-            This remains here as it's specific to this page's footer.
+            This finds the span with id="current-year" and sets its text
+            to the current full year.
         */
         const yearSpan = document.getElementById('current-year');
-        if (yearSpan) {
+        if (yearSpan) { // Check if the element exists before trying to modify it
             yearSpan.textContent = new Date().getFullYear();
         }
     </script>
