@@ -1,360 +1,222 @@
 /*
     style.css
 
-    This file contains the CSS rules to style the index.html page.
+    This file contains the CSS rules to style the website.
     It is linked in the <head> section of index.html using:
     <link rel="stylesheet" href="style.css">
 
-    CSS works by selecting HTML elements and applying properties to them.
-    Selectors can be element names (e.g., body, h1, p), classes (e.g., .hero),
-    IDs (e.g., #current-year), or combinations.
-
-    We will document each section and key rule extensively.
+    We've moved background image properties into specific classes
+    so different HTML pages can apply different backgrounds using these classes.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
-/*
-    A simple reset or normalization helps provide a consistent starting point
-    across different browsers by removing default padding and margin.
-    Box-sizing makes layout calculations more intuitive.
-*/
 *, *::before, *::after {
-    /*
-        The universal selector (*) selects all elements.
-        *::before and *::after select pseudo-elements often used for decoration.
-        box-sizing: border-box; changes how the total width and height of an element
-        are calculated. By default (content-box), padding and border are added to
-        the width/height. With border-box, padding and border are included within
-        the specified width/height, making responsive layouts easier.
-    */
     box-sizing: border-box;
-    margin: 0; /* Removes default margin from all elements */
-    padding: 0; /* Removes default padding from all elements */
+    margin: 0;
+    padding: 0;
 }
 
-/* === 2. Body Styles (Page Background and Base Font) === */
+/* === 2. Body Styles (Base Font, Color, etc.) === */
 /*
-    Styles applied to the <body> element affect the entire visible page content.
-    This is where we'll set the background image and base font properties.
+    These are general body styles that apply to ALL pages using this CSS,
+    regardless of the background image.
 */
 body {
-    font-family: sans-serif; /* Sets a clean, common font for the entire page */
-    line-height: 1.6; /* Increases space between lines for better readability */
-    color: #333; /* Sets a default text color (dark grey) */
-    background-color: #f4f4f4; /* Fallback background color if image doesn't load */
-
-    /* --- Background Image Properties --- */
-    background-image: url('/images/microbunker.png'); /* Specifies the path to your image */
-    /*
-        NOTE: The path 'url('/images/microbunker.png')' is relative to the location
-        of the style.css file OR the domain root if starting with '/'.
-        Make sure your image file is actually located at '/images/microbunker.png'
-        relative to where your website files are served from.
-        If style.css is in the same folder as index.html, and images is a subfolder,
-        the path should be 'url('images/microbunker.png')'. Let's assume the structure
-        where 'images' is a folder at the root level for simplicity, accessible via '/images/'.
-        If your style.css is in a 'css' subfolder, the path would be 'url('../images/microbunker.png')'.
-        Adjust the path according to your file structure.
-    */
-
-    background-repeat: no-repeat; /* Prevents the image from tiling */
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4; /* Fallback background color */
 
     /*
-        background-size: 100% auto;
-        This is crucial for meeting the requirements:
-        - '100%': Makes the background image's width 100% of the container's width (the body).
-                    This ensures the image touches the left and right edges of the pane.
-        - 'auto': Allows the height to scale automatically to maintain the image's original
-                  aspect ratio.
-        - IMPLICATION: If the image's aspect ratio is different from the viewport's,
-                        this may result in vertical scrolling (if the image is taller)
-                        or empty space below the image (if the image is shorter).
-                        This fulfills "aspect ratio always remain the same without cropping if possible"
-                        while also meeting "image to touch the left and right of the pane".
-        Alternative: 'cover' scales the image to cover the entire container, potentially
-                     cropping but ensuring no empty space. 'contain' scales to fit without
-                     cropping, potentially leaving empty space on sides. We use '100% auto'
-                     as it best matches the specific request constraints.
+        NOTE: Background image properties (image path, size, position, repeat)
+        are NO LONGER defined here. They are defined in specific classes
+        like .background-microbunker below.
     */
-    background-size: 100% auto;
 
-    /*
-        background-position: center top;
-        Determines the starting position of the background image.
-        - 'center': Centers the image horizontally.
-        - 'top': Aligns the top edge of the image to the top edge of the container.
-                 You could use 'center center' to center both horizontally and vertically,
-                 or 'center bottom'. 'center top' is often good if the important part
-                 of the image is at the top.
-    */
-    background-position: center top;
-
-    /*
-        background-attachment: scroll;
-        Determines whether the background image scrolls with the content or stays fixed.
-        - 'scroll': The background scrolls with the content (default).
-        - 'fixed': The background stays in place relative to the viewport, creating
-                   a parallax-like effect as the content scrolls over it.
-        Let's start with 'scroll' for simplicity, but 'fixed' is a popular alternative
-        for background images.
-    */
-    background-attachment: scroll;
+    background-attachment: scroll; /* Keep attachment here if it's consistent */
+    /* If background-attachment needs to vary per image, move it to the classes too */
 }
 
-/* === 3. General Layout and Spacing === */
+/* === 3. Background Image Classes === */
 /*
-    Add some padding to main content areas to prevent text/content
-    from touching the edges of the screen, especially on smaller screens.
-    Also style headings and paragraphs for better readability.
+    Define classes for each specific background image you want to use.
+    Each class contains the unique background properties for that image.
+    HTML pages will add one of these classes to their <body> tag.
+*/
+
+.background-microbunker {
+    /*
+        This class applies the microbunker image as the background.
+        Add this class to the <body> tag of any HTML page that should
+        have this specific background. Example: <body class="background-microbunker">
+    */
+    background-image: url('/images/microbunker.png'); /* Path for this specific image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-size: 100% auto; /* Width 100%, height auto to maintain aspect ratio */
+    background-position: center top; /* Position the image */
+    /* Add any other background properties specific to this image here */
+}
+
+/*
+    Example: If you had another image, you'd create another class:
+    .background-otherimage {
+        background-image: url('/images/otherimage.jpg');
+        background-repeat: repeat; /* Maybe this one tiles */
+        background-size: cover; /* Maybe this one covers the screen */
+        background-position: center center;
+    }
+*/
+
+
+/* === 4. General Layout and Spacing === */
+/*
+    These styles apply to the main content containers and sections,
+    providing padding, centering, and the semi-transparent background
+    to ensure text readability over ANY background image applied to the body.
 */
 header, main, footer {
-    /*
-        These are the main layout containers from index.html.
-        We apply padding to give content breathing room inside these containers.
-    */
-    padding: 20px; /* Adds 20 pixels of space on all sides inside the element */
-    max-width: 1200px; /* Optional: Limits the maximum width of the content area
-                           on very wide screens for better readability */
-    margin: 0 auto; /* Centers the block element horizontally if it has a max-width */
-    position: relative; /* Needed if using z-index or absolute positioning for children */
-    z-index: 1; /* Ensures content is above the background image if using background-attachment: fixed */
-    /*
-        If background-attachment is 'scroll', z-index on content is not strictly necessary
-        to be above the background, but it's good practice if you ever change attachment
-        or add other positioned elements.
-    */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1; /* Ensures content is above the background */
 }
 
-/* Add a background color to content sections to improve text readability over the image */
-/* We'll use a semi-transparent white so the background image is still partially visible */
+/* Add a background color to content sections for readability */
 header, main section, footer {
     background-color: rgba(255, 255, 255, 0.9); /* White with 90% opacity */
-    /*
-        Using rgba() allows us to set a color with an alpha channel (transparency).
-        rgba(red, green, blue, alpha) - values are 0-255 for RGB, 0-1 for alpha.
-        0.9 means 90% opaque, 10% transparent. Adjust this value (e.g., 0.8, 0.95)
-        based on how much you want the background image to show through behind the text.
-    */
-    margin-bottom: 20px; /* Adds space between sections */
-    padding: 20px; /* Add padding *inside* the sections as well */
-    border-radius: 8px; /* Optional: Rounds the corners of the content blocks */
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
 }
 
-/* Specific padding for the main element might be useful */
 main {
-    padding-top: 20px; /* Add space above the main content */
-    padding-bottom: 20px; /* Add space below the main content */
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 header {
-    text-align: center; /* Centers text and inline elements within the header */
-    padding-bottom: 10px; /* Space below header content */
+    text-align: center;
+    padding-bottom: 10px;
 }
 
 nav ul {
-    list-style: none; /* Removes default bullet points from the navigation list */
-    padding: 0; /* Removes default padding from the navigation list */
+    list-style: none;
+    padding: 0;
 }
 
 nav li {
-    display: inline-block; /* Arranges list items horizontally */
-    margin: 0 15px; /* Adds space between navigation links */
+    display: inline-block;
+    margin: 0 15px;
 }
 
 nav a {
-    text-decoration: none; /* Removes the default underline from links */
-    color: #007bff; /* Sets a link color (blue) */
-    font-weight: bold; /* Makes link text bold */
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
 }
 
 nav a:hover {
-    text-decoration: underline; /* Adds underline on hover for user feedback */
+    text-decoration: underline;
 }
 
-
-/* Styles for the hero section */
 .hero {
-    text-align: center; /* Centers content in the hero section */
-    padding: 50px 20px; /* More vertical padding to make it stand out */
-    /* background-color: inherit; /* Or you could give the hero section a distinct background */
+    text-align: center;
+    padding: 50px 20px;
 }
 
 .hero h2 {
-    color: #333; /* Sets heading color */
-    margin-bottom: 15px; /* Space below the hero heading */
+    color: #333;
+    margin-bottom: 15px;
 }
 
 .hero p {
-    font-size: 1.1em; /* Slightly larger font size for hero text */
-    margin-bottom: 20px; /* Space below the hero paragraph */
+    font-size: 1.1em;
+    margin-bottom: 20px;
 }
 
-/* Styles for other content sections */
 .content-section h2 {
-    color: #333; /* Sets heading color for content sections */
-    margin-bottom: 15px; /* Space below content section headings */
+    color: #333;
+    margin-bottom: 15px;
 }
 
 footer {
-    text-align: center; /* Centers footer content */
-    padding-top: 20px; /* Space above footer content */
-    font-size: 0.9em; /* Smaller font size for footer text */
-    color: #555; /* Slightly lighter text color for footer */
+    text-align: center;
+    padding-top: 20px;
+    font-size: 0.9em;
+    color: #555;
 }
 
 
-/* === 4. Responsive Design (Media Queries) === */
+/* === 5. Responsive Design (Media Queries) === */
 /*
-    Media queries allow us to apply CSS rules only when certain conditions are met,
-    most commonly based on the viewport width. This is how we optimize for
-    different device sizes (Phone, Tablet, Desktop).
-
-    We'll define breakpoints and adjust styles as needed.
-    Using a "desktop-first" approach here, where base styles (above)
-    are generally for larger screens, and we use max-width queries for smaller screens.
-    Alternatively, a "mobile-first" approach uses min-width queries starting from mobile styles.
-    The choice depends on preference, but both work effectively. Let's use desktop-first
-    as the base styles already lean that way slightly.
-
-    Common Breakpoints:
-    - Extra Small (Phones): < 576px (Sometimes grouped up to 767px)
-    - Small (Phones/Portrait Tablets): >= 576px to < 768px
-    - Medium (Tablets/Small Desktops): >= 768px to < 992px
-    - Large (Desktops): >= 992px to < 1200px
-    - Extra Large (Large Desktops): >= 1200px
-
-    We'll use simplified breakpoints for Phone (<768px), Tablet (>=768px and <1024px),
-    and Desktop (>=1024px) as requested.
+    Adjustments for different screen sizes.
+    These styles will override the general styles above when the conditions are met.
+    We'll also adjust the background properties within the classes if needed per breakpoint.
 */
 
-
-/* --- Optimization for Tablets and Smaller Desktops (Viewport width from 768px up to 1023px) --- */
-/*
-    @media screen and (min-width: 768px) and (max-width: 1023px)
-    This media query applies styles when the viewport width is at least 768 pixels
-    and at most 1023 pixels. This range typically covers tablet devices.
-*/
+/* --- Optimization for Tablets and Smaller Desktops (768px to 1023px) --- */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-    body {
-        /* Adjust background size slightly for tablets if needed */
-        /* background-size: 100% auto; /* Keeping the same as desktop might be fine */
-        background-position: center top; /* Keep image centered horizontally, aligned top */
-        /* If the image feels too big or small, you could tweak background-size here */
-        /* Example: background-size: auto 100%; would make height 100% and width auto,
-                     useful if the image is portrait and you want it to fill the height */
-    }
-
     header, main, footer {
-        padding: 25px; /* Slightly more padding than on small screens */
+        padding: 25px;
     }
 
-    header h1 {
-        font-size: 2.5em; /* Adjust header font size */
-    }
+    header h1 { font-size: 2.5em; }
+    .hero h2 { font-size: 2em; }
 
-    .hero h2 {
-         font-size: 2em; /* Adjust hero heading font size */
+    /* Adjust background classes for this breakpoint if necessary */
+    .background-microbunker {
+         /* background-size: 100% auto; /* Keep consistent or adjust */
+         /* background-position: center top; /* Keep consistent or adjust */
     }
-    /* Add any other specific styles for tablets here */
-    /* For example, adjust font sizes, padding, or layout */
 }
 
-
-/* --- Optimization for Desktop PCs (Viewport width 1024px and above) --- */
-/*
-    @media screen and (min-width: 1024px)
-    This media query applies styles when the viewport width is 1024 pixels or wider.
-    This typically covers desktop and laptop screens. Base styles already apply
-    to this range if no max-width is set, but we can add specific adjustments here.
-*/
+/* --- Optimization for Desktop PCs (1024px and above) --- */
 @media screen and (min-width: 1024px) {
-    body {
-        /* background-size: 100% auto; /* Already defined in base body styles */
-        background-position: center top; /* Already defined in base body styles */
-        /* Could adjust background-position or size further for very large screens if needed */
-    }
-
     header, main, footer {
-        padding: 30px; /* More padding for larger screens */
+        padding: 30px;
     }
 
-    header h1 {
-        font-size: 3em; /* Larger header font size */
-    }
+    header h1 { font-size: 3em; }
+    .hero h2 { font-size: 2.2em; }
+    nav li { margin: 0 20px; }
 
-    .hero h2 {
-        font-size: 2.2em; /* Larger hero heading font size */
-    }
-
-    /* Add any other specific styles for desktops here */
-    /* Layout changes often happen here using flexbox or grid */
-
-    /* Example: Make navigation items have more space on desktop */
-    nav li {
-        margin: 0 20px;
+    /* Adjust background classes for this breakpoint if necessary */
+    .background-microbunker {
+         /* background-size: 100% auto; /* Keep consistent or adjust */
+         /* background-position: center top; /* Keep consistent or adjust */
     }
 }
 
-
-/* --- Optimization for Phones (Viewport width up to 767px) --- */
-/*
-    @media screen and (max-width: 767px)
-    This media query applies styles when the viewport width is 767 pixels or less.
-    This range typically covers most mobile phones.
-*/
+/* --- Optimization for Phones (up to 767px) --- */
 @media screen and (max-width: 767px) {
-    body {
-        /*
-            For smaller screens, 'background-size: cover;' might visually work better
-            than '100% auto' as it ensures the background fills the screen, even if it
-            crops the image vertically. However, to strictly adhere to "without cropping
-            if possible" while touching left/right, '100% auto' is used globally.
-            If you prefer the image to always fill the screen area on mobile,
-            change background-size to 'cover' here:
-            background-size: cover;
-            background-position: center center; /* Or center top */
-        */
-        background-size: 100% auto; /* Sticking to the '100% auto' rule for all sizes */
-        background-position: center top; /* Align top for mobile */
-        /* Potentially adjust vertical position further on mobile if needed */
-    }
-
     header, main, footer {
-        padding: 15px; /* Less padding on smaller screens */
+        padding: 15px;
     }
 
-     header h1 {
-        font-size: 2em; /* Smaller header font size for phones */
-        word-break: break-word; /* Prevents long words from overflowing on small screens */
-     }
+    header h1 {
+        font-size: 2em;
+        word-break: break-word;
+    }
 
-     nav li {
-        display: block; /* Stack navigation links vertically on phones */
-        margin: 10px 0; /* Add vertical space between stacked links */
-     }
+    nav li {
+        display: block;
+        margin: 10px 0;
+    }
 
-     .hero {
-         padding: 30px 15px; /* Less vertical padding for hero on phones */
-     }
+    .hero { padding: 30px 15px; }
+    .hero h2 { font-size: 1.5em; }
+    .hero p { font-size: 1em; }
+    .content-section h2 { font-size: 1.3em; }
+    footer { font-size: 0.8em; }
 
-     .hero h2 {
-         font-size: 1.5em; /* Smaller hero heading font size */
-     }
-
-     .hero p {
-         font-size: 1em; /* Standard font size for hero text on phones */
-     }
-
-     .content-section h2 {
-        font-size: 1.3em; /* Smaller content heading size */
-     }
-
-     footer {
-         font-size: 0.8em; /* Even smaller footer font size */
-     }
-
-     /* Add more specific mobile adjustments here */
-     /* For example, stack content blocks, adjust image sizes, etc. */
+    /* Adjust background classes for this breakpoint if necessary */
+    .background-microbunker {
+         /* background-size: 100% auto; /* Keep consistent or adjust */
+         /* background-position: center top; /* Keep consistent or adjust */
+         /* On mobile, 'cover' might be preferred visually, but '100% auto'
+            maintains the aspect ratio and touches left/right as requested. */
+    }
 }
 
 /* === End of style.css === */

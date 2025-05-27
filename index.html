@@ -1,253 +1,59 @@
 <!DOCTYPE html>
-<!--
-    <!DOCTYPE html>
-    This declaration tells the browser that this document is an HTML5 document.
-    It's crucial for ensuring the browser renders the page in standards mode.
--->
 <html lang="en">
-<!--
-    <html lang="en">
-    This is the root element of an HTML page.
-    The 'lang="en"' attribute specifies the language of the document content, which helps
-    search engines, screen readers, and other applications. 'en' stands for English.
-    You can change this if your content is in a different language (e.g., 'fr' for French).
--->
 <head>
-    <!--
-        <head>
-        The <head> element contains meta-information about the HTML document, such as its title,
-        character set, styles, scripts, and other meta settings. This information is NOT
-        displayed directly on the web page itself but is used by browsers, search engines,
-        and other web services.
-    -->
     <meta charset="UTF-8">
-    <!--
-        <meta charset="UTF-8">
-        This <meta> tag specifies the character encoding for the HTML document.
-        UTF-8 is the recommended character encoding as it supports almost all characters
-        and symbols in the world, preventing display issues with various languages.
-    -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        This <meta> tag is essential for making your website responsive across different devices
-        (desktops, tablets, mobile phones).
-        - 'width=device-width': Sets the width of the viewport to the device's screen width.
-        - 'initial-scale=1.0': Sets the initial zoom level when the page is first loaded.
-        This ensures that the page scales correctly on small screens.
-    -->
     <title>Your Website Title Here | A Brief Description</title>
-    <!--
-        <title>Your Website Title Here | A Brief Description</title>
-        The <title> element defines the title of the document, which is displayed in the
-        browser's title bar or tab. It's important for SEO (Search Engine Optimization)
-        and user experience, telling visitors what the page is about at a glance.
-        **Remember to change this!** Include your website name and perhaps a short,
-        relevant phrase.
-    -->
-
-    <!-- Link to our external CSS file (we'll create this next!) -->
+    <!-- Link to our external CSS file -->
     <link rel="stylesheet" href="style.css">
-    <!--
-        <link rel="stylesheet" href="style.css">
-        The <link> tag is used to link an external resource to the HTML document.
-        - 'rel="stylesheet"': Specifies the relationship of the linked document to the current document.
-                               'stylesheet' indicates that the linked file is a Cascading Style Sheet.
-        - 'href="style.css"': Specifies the path to the external file. In this case, 'style.css'
-                                means the CSS file is located in the same directory as this HTML file.
-                                This is how we apply styles to our HTML content.
-    -->
-
-    <!-- You can add other things here like favicons, other meta tags, etc. -->
-
 </head>
-<body>
-    <!--
-        <body>
-        The <body> element contains all the visible content of the HTML document,
-        such as text, images, videos, links, forms, etc. Everything you see on the web page
-        is within the body.
-    -->
+<!--
+    Add the CSS class 'background-microbunker' to the body tag.
+    This class is defined in style.css and contains the background image properties.
+    For a different page with a different background, you would add a different class
+    (e.g., <body class="background-otherimage">) assuming you defined
+    .background-otherimage in style.css.
+-->
+<body class="background-microbunker">
 
     <header>
-        <!--
-            <header>
-            The <header> element represents introductory content, typically containing
-            a group of introductory or navigational aids. It often includes the site logo,
-            site title, and the main navigation menu. There can be multiple <header>
-            elements on a page, but usually one main one at the top of the <body>.
-        -->
         <h1>Welcome to Your Website!</h1>
-        <!--
-            <h1>
-            <h1> to <h6> are heading elements. <h1> is the highest level (most important)
-            heading, and <h6> is the lowest. There should generally be only one <h1>
-            per page, representing the main title or topic of the page.
-            **Change "Welcome to Your Website!"** to your actual site title or main message.
-        -->
-
         <nav>
-            <!--
-                <nav>
-                The <nav> element represents a section of a page that contains navigation links
-                — links that take the user to other pages on the site or to different sections
-                within the same page.
-            -->
             <ul>
-                <!--
-                    <ul>
-                    The <ul> element represents an unordered list. List items are typically
-                    displayed with bullet points.
-                -->
                 <li><a href="index.html">Home</a></li>
-                <!--
-                    <li>
-                    The <li> element represents a list item within an ordered (<ol>) or
-                    unordered (<ul>) list.
-                -->
-                <!--
-                    <a>
-                    The <a> element (anchor) creates a hyperlink, which is used to link from
-                    one page to another, or within the same page.
-                    - 'href="index.html"': The 'href' attribute specifies the URL of the page
-                                             the link goes to. 'index.html' refers to this
-                                             same file, making it a link back to the homepage.
-                -->
-
-                <!-- Add links to other pages here as we create them -->
-                <!--
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    To add these links, remove the <!-- ... --> comments and create the
-                    corresponding HTML files (e.g., about.html, services.html, contact.html).
-                -->
+                <!-- Add links to other pages here -->
+                <!-- <li><a href="about.html">About Us</a></li> -->
+                <!-- <li><a href="contact.html">Contact</a></li> -->
             </ul>
         </nav>
     </header>
 
     <main>
-        <!--
-            <main>
-            The <main> element represents the dominant content of the <body> of a document.
-            The main content area consists of content that is directly related to or expands
-            upon the central topic of the document, or the central functionality of a web
-            application. There should only be one <main> element per document.
-        -->
-
         <section class="hero">
-            <!--
-                <section>
-                The <section> element represents a standalone section of a page that doesn't
-                have a more specific semantic element to represent it (like <nav> or <article>).
-                Sections should typically include a heading.
-                - 'class="hero"': This is a CSS class. It's a way to group elements so that
-                                   we can apply specific styles to them using CSS. 'hero'
-                                   is a common class name for a prominent, often large, section
-                                   at the top of a page (like a banner or main call-to-action).
-            -->
             <h2>Your Catchy Headline</h2>
-            <!--
-                <h2>
-                A secondary heading, typically used for major sections within the main content.
-                **Change "Your Catchy Headline"** to a compelling hook for your site visitors.
-            -->
-            <p>A brief description of your website or what you offer. This paragraph should explain
-               what your site is about or what value you provide to visitors.</p>
-            <!--
-                <p>
-                The <p> element represents a paragraph of text.
-            -->
-            <!-- Maybe a call-to-action button -->
-            <!--
-            <button>Learn More</button>
-            The <button> element represents a clickable button. This one is commented out
-            but is a common element in hero sections to encourage user interaction.
-            You could wrap this in an <a> tag to make it a link that looks like a button.
-            -->
+            <p>A brief description of your website or what you offer.</p>
+            <!-- <button>Learn More</button> -->
         </section>
 
         <section class="content-section">
-             <!-- Another section for general content -->
             <h2>Section Title</h2>
-            <!--
-                <h2>
-                Another secondary heading for this content section.
-                **Change "Section Title"**.
-            -->
-            <p>This is where you can add more information, list your services, showcase features,
-               include testimonials, or any other content relevant to this part of the page.</p>
-            <!-- Add more paragraphs, images (<img src="..." alt="...">), lists, etc. here. -->
-            <!--
-            <img src="placeholder.jpg" alt="Description of image">
-            The <img> element embeds an image.
-            - 'src="..."': Specifies the path to the image file.
-            - 'alt="..."': Provides alternative text for the image, which is crucial for
-                           accessibility (screen readers) and displayed if the image doesn't load.
-            -->
+            <p>This is where you can add more information, services, features, etc.</p>
         </section>
 
-        <!-- Add more sections as needed for different content blocks -->
-        <!--
-        <section class="another-section">
-            <h2>Another Part of Your Page</h2>
-            <p>You can duplicate the <section> structure to add more distinct content blocks
-               to your homepage.</p>
-        </section>
-        -->
+        <!-- Add more sections as needed -->
 
     </main>
 
     <footer>
-        <!--
-            <footer>
-            The <footer> element represents a footer for its nearest sectioning content
-            or the root element (<html>). Footers typically contain:
-            - Copyright information
-            - Links to related documents (Terms of Service, Privacy Policy)
-            - Author/owner information
-            - Contact information
-        -->
         <p>© <span id="current-year"></span> Your Name or Company. All rights reserved.</p>
-        <!--
-            © : This is an HTML entity code for the copyright symbol (©).
-            <span id="current-year"></span> : The <span> element is an inline container
-                used to group content for styling purposes. The 'id="current-year"' gives it
-                a unique identifier so we can easily select it with JavaScript.
-            "Your Name or Company": **Change this** to your actual name or company name.
-        -->
-        <!-- Add other footer links/content here if needed -->
-        <!--
-        <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
-        -->
     </footer>
 
-    <!-- Optional: Link to an external JavaScript file for more complex interactivity -->
-    <!-- <script src="script.js"></script> -->
-    <!--
-        <script src="script.js"></script>
-        The <script> element is used to embed or link executable code (JavaScript).
-        Placing scripts at the end of the <body> is a common practice because it ensures
-        that the HTML structure is fully loaded by the browser before the script tries
-        to access or modify elements on the page.
-        This line is commented out, but you would uncomment it if you create a 'script.js' file.
-    -->
-
-    <!-- A simple inline script to update the copyright year dynamically -->
     <script>
-        // Get the element with the ID 'current-year'
+        // Simple script to update the copyright year automatically
         const yearSpan = document.getElementById('current-year');
-        // Check if the element exists to prevent errors
         if (yearSpan) {
-            // Set the text content of the span to the current year
             yearSpan.textContent = new Date().getFullYear();
         }
-        /*
-            This is a small block of JavaScript code embedded directly in the HTML file.
-            While embedding small scripts is okay, for larger amounts of JavaScript,
-            it's better practice to use an external file linked via <script src="...">
-            for organization and caching benefits.
-        */
     </script>
 
 </body>
