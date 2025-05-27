@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+    cowpoke.html
+
+    This is the HTML file for the Cowpoke page on the Micro Bunker website.
+    It uses the same structure and styling as index.html but loads
+    its specific menu (menugp.html) and has content specific to Cowpoke.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro Bunker | Cowpoke</title> <!-- <<< CHANGED TITLE HERE -->
+    <!-- Updated title for the Cowpoke page -->
+
+    <!-- Link to the external CSS file for styling (same style.css for all pages) -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <!--
+        <body>
+        Contains all the visible content of the web page.
+        Uses the same body styles (background, font, etc.) from style.css.
+    -->
+
+    <header>
+        <!-- Header area containing the site title and navigation -->
+        <div class="header-container">
+            <h1>Micro Bunker</h1>
+            <!-- Site title -->
+
+            <!--
+                Placeholder for the navigation menu.
+                The JavaScript below will fetch the content of menugp.html
+                and insert it here.
+            -->
+            <div id="menu-placeholder">
+                <!--
+                    Fallback navigation for users with JavaScript disabled.
+                    Ensure links point to the correct pages.
+                -->
+                <noscript>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Micro Bunker</a></li>
+                            <li><a href="gammazone.html">Gamma Zone</a></li>
+                            <li><a href="vikingbrawl.html">Viking Brawl</a></li>
+                            <li><a href="cowpoke.html">Cowpoke</a></li>
+                            <li><a href="othergames.html">Other Games</a></li>
+                        </ul>
+                    </nav>
+                </noscript>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Main content area specific to the Cowpoke page -->
+
+        <section class="hero">
+            <!-- Hero section for the Cowpoke page -->
+            <h2>Saddle Up for Cowpoke!</h2>
+            <p>Experience the wild west in this unique game.</p>
+            <!-- Add more content specific to Cowpoke here -->
+        </section>
+
+        <section class="content-section">
+             <!-- Another section for Cowpoke details -->
+            <h2>About Cowpoke</h2>
+            <p>Learn about the features, characters, and setting of Cowpoke.</p>
+            <!-- Add details about the game -->
+        </section>
+
+        <!-- Add more sections specific to Cowpoke as needed -->
+
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+        <p>© <span id="current-year"></span> Micro Bunker. All rights reserved.</p>
+        <!-- Copyright text -->
+    </footer>
+
+    <!--
+        JavaScript to load the menu from menugp.html.
+        This script is specific to this page because it fetches 'menugp.html'.
+    -->
+    <script>
+        async function loadMenu() {
+            try {
+                const response = await fetch('menugp.html'); // Corrected fetch target
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const menuHtml = await response.text();
+                const menuPlaceholder = document.getElementById('menu-placeholder');
+                if (menuPlaceholder) {
+                    menuPlaceholder.innerHTML = menuHtml;
+                } else {
+                    console.warn('Menu placeholder element with ID "menu-placeholder" not found.');
+                }
+            } catch (error) {
+                console.error('Failed to load menu:', error);
+            }
+        }
+        loadMenu();
+
+        const yearSpan = document.getElementById('current-year');
+        if (yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+    </script>
+
+</body>
+</html>
