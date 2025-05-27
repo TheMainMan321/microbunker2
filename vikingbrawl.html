@@ -1,16 +1,95 @@
+<!DOCTYPE html>
+<!--
+    vikingbrawl.html
+
+    This is the HTML file for the Viking Brawl page on the Micro Bunker website.
+    It uses the same structure and styling as index.html but loads
+    its specific menu (menuvb.html) and has content specific to Viking Brawl.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro Bunker | Viking Brawl</title> <!-- <<< CHANGED TITLE HERE -->
+    <!-- Updated title for the Viking Brawl page -->
+
+    <!-- Link to the external CSS file for styling (same style.css for all pages) -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <!--
+        <body>
+        Contains all the visible content of the web page.
+        Uses the same body styles (background, font, etc.) from style.css.
+    -->
+
+    <header>
+        <!-- Header area containing the site title and navigation -->
+        <div class="header-container">
+            <h1>Micro Bunker</h1>
+            <!-- Site title -->
+
+            <!--
+                Placeholder for the navigation menu.
+                The JavaScript below will fetch the content of menuvb.html
+                and insert it here.
+            -->
+            <div id="menu-placeholder">
+                <!--
+                    Fallback navigation for users with JavaScript disabled.
+                    Ensure links point to the correct pages.
+                -->
+                <noscript>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Micro Bunker</a></li>
+                            <li><a href="gammazone.html">Gamma Zone</a></li>
+                            <li><a href="vikingbrawl.html">Viking Brawl</a></li>
+                            <li><a href="cowpoke.html">Cowpoke</a></li>
+                            <li><a href="othergames.html">Other Games</a></li>
+                        </ul>
+                    </nav>
+                </noscript>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Main content area specific to the Viking Brawl page -->
+
+        <section class="hero">
+            <!-- Hero section for the Viking Brawl page -->
+            <h2>Enter the Viking Brawl!</h2>
+            <p>Prepare for epic battles in this action-packed game.</p>
+            <!-- Add more content specific to Viking Brawl here -->
+        </section>
+
+        <section class="content-section">
+             <!-- Another section for Viking Brawl details -->
+            <h2>About Viking Brawl</h2>
+            <p>Learn about the mechanics, characters, and arenas in Viking Brawl.</p>
+            <!-- Add details about the game -->
+        </section>
+
+        <!-- Add more sections specific to Viking Brawl as needed -->
+
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+        <p>© <span id="current-year"></span> Micro Bunker. All rights reserved.</p>
+        <!-- Copyright text -->
+    </footer>
+
     <!--
         JavaScript to load the menu from menuvb.html.
         This script is specific to this page because it fetches 'menuvb.html'.
     -->
     <script>
-        /*
-            Async function to fetch the content of menuvb.html
-            and insert it into the element with id="menu-placeholder".
-        */
         async function loadMenu() {
             try {
-                // Fetch the menuvb.html file -- CORRECTED LINE
-                const response = await fetch('menuvb.html');
+                const response = await fetch('menuvb.html'); // Corrected fetch target
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -24,15 +103,14 @@
             } catch (error) {
                 console.error('Failed to load menu:', error);
             }
-            // Note: The fallback <noscript> menu is already in the HTML
         }
-        loadMenu(); // Call the function to load the menu
+        loadMenu();
 
-        /*
-            Simple script to update the copyright year automatically.
-        */
         const yearSpan = document.getElementById('current-year');
         if (yearSpan) {
             yearSpan.textContent = new Date().getFullYear();
         }
     </script>
+
+</body>
+</html>

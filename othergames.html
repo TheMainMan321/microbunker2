@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Micro Bunker | Other Games</title>
+    <title>Micro Bunker | Other Games</title> <!-- <<< CHANGED TITLE HERE -->
     <!-- Updated title for the Other Games page -->
 
     <!-- Link to the external CSS file for styling (same style.css for all pages) -->
@@ -87,14 +87,9 @@
         This script is specific to this page because it fetches 'menuog.html'.
     -->
     <script>
-        /*
-            Async function to fetch the content of menuog.html
-            and insert it into the element with id="menu-placeholder".
-        */
         async function loadMenu() {
             try {
-                // Fetch the menuog.html file
-                const response = await fetch('menuog.html');
+                const response = await fetch('menuog.html'); // Corrected fetch target
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -108,13 +103,9 @@
             } catch (error) {
                 console.error('Failed to load menu:', error);
             }
-            // Note: The fallback <noscript> menu is already in the HTML
         }
-        loadMenu(); // Call the function to load the menu
+        loadMenu();
 
-        /*
-            Simple script to update the copyright year automatically.
-        */
         const yearSpan = document.getElementById('current-year');
         if (yearSpan) {
             yearSpan.textContent = new Date().getFullYear();
