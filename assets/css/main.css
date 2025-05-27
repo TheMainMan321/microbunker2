@@ -2444,3 +2444,17 @@ input, select, textarea {
 			}
 
 	}
+
+.header-bg {
+    background-image: url('../images/mb1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    min-height: 300px; /* Adjust as needed for your design */
+}
+@media (max-width: 600px) {
+    .header-bg {
+        min-height: 150px; /* Responsive height for small screens */
+    }
+}
