@@ -5,19 +5,28 @@
     This is the HTML file for the Gamma Zone page on the Micro Bunker website.
     It uses the same structure and styling as index.html but loads
     its specific menu (menugz.html) and has content specific to Gamma Zone.
+    A background image is added using a CSS variable.
 -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Micro Bunker | Gamma Zone</title> <!-- <<< CHANGED TITLE HERE -->
+    <title>Micro Bunker | Gamma Zone</title>
     <!-- Updated title for the Gamma Zone page -->
 
     <!-- Link to the external CSS file for styling (same style.css for all pages) -->
     <link rel="stylesheet" href="style.css">
 
 </head>
-<body>
+<!--
+    Add a 'style' attribute to the body tag to define a CSS variable
+    '--page-background-image'. The value of this variable is the URL
+    of the background image specific to this page.
+    The style.css file will use this variable for the background-image property.
+    This allows each HTML file to specify its own image path while
+    sharing the same background styling rules defined in style.css.
+-->
+<body style="--page-background-image: url('/images/microbunker.png');">
     <!--
         <body>
         Contains all the visible content of the web page.
@@ -87,8 +96,13 @@
         This script is specific to this page because it fetches 'menugz.html'.
     -->
     <script>
+        /*
+            Async function to fetch the content of menugz.html
+            and insert it into the element with id="menu-placeholder".
+        */
         async function loadMenu() {
             try {
+                // Fetch the menugz.html file
                 const response = await fetch('menugz.html');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -104,8 +118,11 @@
                 console.error('Failed to load menu:', error);
             }
         }
-        loadMenu();
+        loadMenu(); // Call the function to load the menu
 
+        /*
+            Simple script to update the copyright year automatically.
+        */
         const yearSpan = document.getElementById('current-year');
         if (yearSpan) {
             yearSpan.textContent = new Date().getFullYear();
