@@ -4,7 +4,7 @@
 
     This is the HTML file for the Viking Brawl page on the Micro Bunker website.
     It uses the same structure and styling as index.html but loads
-    its specific menu (menugp.html) and has content specific to Cowpoke.
+    its specific menu (menuvb.html) and has content specific to Cowpoke.
 -->
 <html lang="en">
 <head>
@@ -32,7 +32,7 @@
 
             <!--
                 Placeholder for the navigation menu.
-                The JavaScript below will fetch the content of menugp.html
+                The JavaScript below will fetch the content of menuvb.html
                 and insert it here.
             -->
             <div id="menu-placeholder">
@@ -83,13 +83,13 @@
     </footer>
 
     <!--
-        JavaScript to load the menu from menugp.html.
-        This script is specific to this page because it fetches 'menugp.html'.
+        JavaScript to load the menu from menuvb.html.
+        This script is specific to this page because it fetches 'menuvb.html'.
     -->
     <script>
         async function loadMenu() {
-            try {
-                const response = await fetch('menugp.html'); // Corrected fetch target
+            try
+                const response = await fetch('menuvb.html'); // Corrected fetch target
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
