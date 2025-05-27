@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <!--
-    index.html
+    gammazone.html
 
-    This is the main HTML file for the Micro Bunker website homepage.
-    It defines the structure and content of the page.
+    This is the HTML file for the Gamma Zone page on the Micro Bunker website.
+    It uses the same structure and styling as index.html but loads
+    its specific menu (menugz.html) and has content specific to Gamma Zone.
 -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Micro Bunker | Home</title>
-    <!-- Sets the title displayed in the browser tab. -->
+    <title>Micro Bunker | Gamma Zone</title>
+    <!-- Updated title for the Gamma Zone page -->
 
-    <!-- Link to the external CSS file for styling -->
+    <!-- Link to the external CSS file for styling (same style.css for all pages) -->
     <link rel="stylesheet" href="style.css">
-    <!-- This links this HTML file to style.css, applying its styles. -->
-
-    <!-- You can add other things here like favicons, other meta tags, etc. -->
 
 </head>
 <body>
     <!--
         <body>
         Contains all the visible content of the web page.
+        Uses the same body styles (background, font, etc.) from style.css.
     -->
 
     <header>
         <!-- Header area containing the site title and navigation -->
         <div class="header-container">
             <h1>Micro Bunker</h1>
-            <!-- The main title of the page, positioned on the top left via CSS. -->
+            <!-- Site title -->
 
             <!--
                 Placeholder for the navigation menu.
-                The JavaScript code at the end of the body will fetch the content
-                of menumb.html and insert it into this div.
+                The JavaScript below will fetch the content of menugz.html
+                and insert it here.
             -->
             <div id="menu-placeholder">
                 <!--
                     Fallback navigation for users with JavaScript disabled.
-                    **Updated links to match the new filenames.**
+                    Ensure links point to the correct pages.
                 -->
                 <noscript>
                     <nav>
@@ -57,23 +56,23 @@
     </header>
 
     <main>
-        <!-- Main content area specific to the homepage -->
+        <!-- Main content area specific to the Gamma Zone page -->
 
         <section class="hero">
-            <!-- Hero section for the homepage -->
-            <h2>Welcome to Micro Bunker!</h2>
-            <p>Explore the worlds of Gamma Zone, Viking Brawl, Cowpoke, and more.</p>
-            <!-- Add more content specific to the homepage here -->
+            <!-- Hero section for the Gamma Zone page -->
+            <h2>Welcome to the Gamma Zone!</h2>
+            <p>Explore the irradiated wasteland in this thrilling adventure.</p>
+            <!-- Add more content specific to Gamma Zone here -->
         </section>
 
         <section class="content-section">
-             <!-- Another section for general content -->
-            <h2>About Our Games</h2>
-            <p>Discover unique gaming experiences crafted with passion.</p>
-            <!-- Add descriptions of games, features, etc. -->
+             <!-- Another section for Gamma Zone details -->
+            <h2>About Gamma Zone</h2>
+            <p>Learn about the gameplay, characters, and challenges in Gamma Zone.</p>
+            <!-- Add details about the game -->
         </section>
 
-        <!-- Add more sections as needed for different content blocks -->
+        <!-- Add more sections specific to Gamma Zone as needed -->
 
     </main>
 
@@ -81,23 +80,21 @@
         <!-- Footer content -->
         <p>© <span id="current-year"></span> Micro Bunker. All rights reserved.</p>
         <!-- Copyright text -->
-        <!-- Add other footer links/content here if needed -->
     </footer>
 
     <!--
-        JavaScript to load the menu from menumb.html.
-        This script is specific to this page because it fetches 'menumb.html'.
+        JavaScript to load the menu from menugz.html.
+        This script is specific to this page because it fetches 'menugz.html'.
     -->
     <script>
         /*
-            Async function to fetch the content of menumb.html
+            Async function to fetch the content of menugz.html
             and insert it into the element with id="menu-placeholder".
-            This allows the menu HTML to be managed in a separate file.
         */
         async function loadMenu() {
             try {
-                // Fetch the menumb.html file
-                const response = await fetch('menumb.html');
+                // Fetch the menugz.html file
+                const response = await fetch('menugz.html');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -111,7 +108,6 @@
             } catch (error) {
                 console.error('Failed to load menu:', error);
             }
-            // Note: The fallback <noscript> menu is already in the HTML
         }
         loadMenu(); // Call the function to load the menu
 
