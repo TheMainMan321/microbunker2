@@ -1,3 +1,5 @@
+--- START OF FILE index.html ---
+
 <!DOCTYPE html>
 <!--
     index.html
@@ -19,7 +21,15 @@
     <!-- You can add other things here like favicons, other meta tags, etc. -->
 
 </head>
-<body>
+<!--
+    Add a 'style' attribute to the body tag to define a CSS variable
+    '--page-background-image'. The value of this variable is the URL
+    of the background image specific to this page.
+    The style.css file will use this variable for the background-image property.
+    This allows each HTML file to specify its own image path while
+    sharing the same background styling rules defined in style.css.
+-->
+<body style="--page-background-image: url('/images/microbunker.png');">
     <!--
         <body>
         Contains all the visible content of the web page.
@@ -39,7 +49,7 @@
             <div id="menu-placeholder">
                 <!--
                     Fallback navigation for users with JavaScript disabled.
-                    **Updated links to match the new filenames.**
+                    Ensure links point to the correct pages.
                 -->
                 <noscript>
                     <nav>

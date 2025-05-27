@@ -2,28 +2,24 @@
     style.css
 
     This file contains the CSS rules to style the Micro Bunker website.
-    It is linked in the <head> section of index.html.
+    It is linked in the <head> section of index.html and other pages.
 
     CSS selectors target HTML elements (body, h1, p), classes (.hero, .content-section),
     and IDs (#menu-placeholder) to apply styles (colors, fonts, layout, etc.).
+
+    We are now using a CSS variable (--page-background-image) defined on the
+    body element in each HTML file to specify the background image URL.
+    The styling properties (size, position, etc.) are defined here in style.css.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
-/*
-    A simple reset to remove default browser styling inconsistencies
-    and set box-sizing for easier layout calculations.
-*/
 *, *::before, *::after {
-    /*
-        The universal selector (*) selects all elements.
-        box-sizing: border-box; includes padding and border in the element's total width/height.
-    */
     box-sizing: border-box;
-    margin: 0; /* Removes default margin */
-    padding: 0; /* Removes default padding */
+    margin: 0;
+    padding: 0;
 }
 
-/* === 2. Body Styles (Background Color and Image, Base Font) === */
+/* === 2. Body Styles (Background Color, Image using Variable, Base Font) === */
 /*
     Styles applied to the <body> affect the entire visible page.
 */
@@ -36,113 +32,99 @@ body {
     background-color: #333; /* Dark gray background color underneath everything */
     /* This color will be visible if the image doesn't load or doesn't cover the whole area. */
 
-    background-image: url('/images/microbunker.png'); /* Specifies the path to your image */
     /*
-        NOTE: The path 'url('/images/microbunker.png')' is relative to the domain root.
-        If your 'images' folder is in the same directory as index.html and style.css,
-        the path should be 'url('images/microbunker.png')'.
-        If style.css is in a 'css' subfolder, it would be 'url('../images/microbunker.png')'.
-        **Verify this path based on your actual file structure.**
+        Use the CSS variable '--page-background-image' defined on the body element
+        in the HTML file. If the variable is not set (e.g., on a page without the style attribute),
+        the fallback value 'none' will be used, meaning no background image.
     */
+    background-image: var(--page-background-image, none);
 
-    background-repeat: no-repeat; /* Prevents the image from tiling */
+    background-repeat: no-repeat; /* Prevent tiling for the background image */
 
     /*
-        background-size: cover;
-        Scales the image to be as large as possible without stretching,
-        such that the background area is completely covered by the background image.
-        Some parts of the background image may not be visible in the background
-        positioning area. This ensures the image fills the screen.
+        background-size: 100% auto;
+        - '100%': Makes the image width 100% of the body's width (which fills the pane).
+        - 'auto': Scales the height proportionally to maintain the image's aspect ratio (like 16:9).
+        This ensures the image spans left-to-right and preserves its aspect ratio without cropping.
+        It might result in vertical scrolling if the image is taller than the viewport,
+        or empty space below if it's shorter.
     */
-    background-size: cover;
+    background-size: 100% auto;
 
     /*
-        background-position: center center;
-        Centers the background image both horizontally and vertically within the container.
+        background-position: center top;
+        Positions the image horizontally centered and aligned to the top.
+        You could use 'center center' to center it both ways.
     */
-    background-position: center center;
+    background-position: center top;
 
     /*
         background-attachment: fixed;
-        The background image will not scroll with the content.
-        This creates a common parallax-like effect where the content scrolls over a static background.
+        (Optional - keep if you want the parallax effect, remove if you want it to scroll)
+        Keeps the background image fixed in the viewport while content scrolls over it.
+        If you remove this, the image will scroll with the page content.
     */
-    background-attachment: fixed;
+    background-attachment: fixed; /* Or 'scroll' */
 }
 
 /* === 3. Header Layout (Title and Menu Positioning) === */
-/*
-    Styles for the header area containing the title and navigation.
-*/
 header {
-    /*
-        We'll use flexbox on the header-container inside the header
-        to position the title and menu.
-    */
-    padding: 10px 20px; /* Add padding around the header content */
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background for the header bar */
-    /* This helps the title and menu stand out against the background image. */
-    color: #fff; /* Set text color to white for contrast */
-    position: relative; /* Needed for z-index */
-    z-index: 10; /* Ensure header is above other content and background */
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    position: relative;
+    z-index: 10;
 }
 
 .header-container {
-    display: flex; /* Enable flexbox layout */
-    justify-content: space-between; /* Pushes the first item (h1) to the left and the last item (#menu-placeholder) to the right */
-    align-items: center; /* Vertically centers the items (h1 and #menu-placeholder) */
-    max-width: 1200px; /* Optional: Limit width on large screens */
-    margin: 0 auto; /* Center the container if max-width is set */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 header h1 {
-    font-size: 2em; /* Size of the main title */
-    margin: 0; /* Remove default h1 margin */
-    color: #fff; /* Ensure title is white */
+    font-size: 2em;
+    margin: 0;
+    color: #fff;
 }
 
 /* === 4. Navigation Menu Styles === */
-/*
-    Styles for the navigation menu loaded into #menu-placeholder.
-*/
 #menu-placeholder nav ul {
-    list-style: none; /* Removes default bullet points */
-    padding: 0; /* Removes default padding */
-    margin: 0; /* Removes default margin */
-    display: flex; /* Enable flexbox for the list items */
-    /* justify-content: flex-end; /* Already handled by header-container space-between */
-    align-items: center; /* Vertically center menu items */
-    flex-wrap: wrap; /* Allow menu items to wrap to the next line on smaller screens */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 #menu-placeholder nav li {
-    /* display: inline-block; /* Flex items don't need inline-block */
-    margin-left: 20px; /* Add space to the left of each menu item */
-    /* margin: 0 10px; /* Alternative: add space on both sides */
+    margin-left: 20px;
 }
 
 #menu-placeholder nav a {
-    text-decoration: none; /* Removes the default underline from links */
-    color: #fff; /* Sets link color to white */
-    font-weight: bold; /* Makes link text bold */
-    padding: 5px 10px; /* Add padding around the link text for click area */
-    display: inline-block; /* Ensures padding works correctly */
-    transition: color 0.3s ease; /* Smooth color transition on hover */
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 10px;
+    display: inline-block;
+    transition: color 0.3s ease;
 }
 
 #menu-placeholder nav a:hover {
-    color: #007bff; /* Change link color on hover (e.g., to blue) */
-    /* text-decoration: underline; /* Optional: Add underline on hover */
+    color: #007bff;
 }
 
 /* Style for the <noscript> fallback menu */
-/* This ensures the fallback menu also looks decent if JS is off */
 noscript nav ul {
      list-style: none;
      padding: 0;
      margin: 0;
      display: flex;
-     justify-content: flex-end; /* Position fallback menu to the right */
+     justify-content: flex-end;
      align-items: center;
      flex-wrap: wrap;
 }
@@ -161,183 +143,87 @@ noscript nav a {
 
 
 /* === 5. Main Content Area Styles === */
-/*
-    Styles for the <main> element and sections within it.
-    We add padding and a semi-transparent background for readability over the image.
-*/
 main {
-    max-width: 1200px; /* Limit width on large screens */
-    margin: 20px auto; /* Center the main content and add vertical space */
-    padding: 0 20px; /* Add horizontal padding inside main */
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
     position: relative;
-    z-index: 1; /* Ensure main content is above the background */
+    z-index: 1;
 }
 
 main section {
-    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for content blocks */
-    padding: 20px; /* Add padding inside each section */
-    margin-bottom: 20px; /* Add space between sections */
-    border-radius: 8px; /* Optional: Rounded corners */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
 }
 
 main section h2 {
-    color: #333; /* Heading color */
-    margin-bottom: 15px; /* Space below heading */
+    color: #333;
+    margin-bottom: 15px;
 }
 
 /* === 6. Footer Styles === */
-/*
-    Styles for the <footer> element.
-*/
 footer {
-    text-align: center; /* Center footer text */
-    padding: 20px; /* Add padding around footer content */
-    font-size: 0.9em; /* Smaller font size for footer text */
-    color: #ccc; /* Lighter color for footer text */
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background for footer */
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+    color: #ccc;
+    background-color: rgba(0, 0, 0, 0.7);
     position: relative;
-    z-index: 1; /* Ensure footer is above the background */
+    z-index: 1;
 }
 
 
 /* === 7. Responsive Adjustments (Media Queries) === */
-/*
-    Adjust styles for smaller screens.
-*/
 
 /* --- Optimization for Phones (up to 767px) --- */
 @media screen and (max-width: 767px) {
-    /* Adjust header layout for small screens */
-    .header-container {
-        flex-direction: column; /* Stack title and menu vertically */
-        align-items: flex-start; /* Align items to the left */
-    }
+    header { padding: 10px 15px; }
+    .header-container { flex-direction: column; align-items: flex-start; }
+    header h1 { font-size: 1.5em; margin-bottom: 10px; }
+    #menu-placeholder nav ul, noscript nav ul { flex-direction: column; align-items: flex-start; width: 100%; }
+    #menu-placeholder nav li, noscript nav li { margin: 5px 0; margin-left: 0; width: 100%; }
+    #menu-placeholder nav a, noscript nav a { padding: 8px 15px; width: 100%; }
+    main { padding: 0 10px; }
+    main section { padding: 15px; }
+    main section h2 { font-size: 1.3em; }
+    footer { padding: 15px; font-size: 0.8em; }
 
-    header h1 {
-        font-size: 1.5em; /* Smaller title font size */
-        margin-bottom: 10px; /* Add space below the title */
-    }
-
-    /* Stack navigation links vertically on phones */
-    #menu-placeholder nav ul,
-    noscript nav ul {
-        flex-direction: column; /* Stack list items vertically */
-        align-items: flex-start; /* Align links to the left */
-        width: 100%; /* Make the ul take full width */
-    }
-
-    #menu-placeholder nav li,
-    noscript nav li {
-        margin: 5px 0; /* Add vertical space between stacked links */
-        margin-left: 0; /* Remove left margin when stacked */
-        width: 100%; /* Make list items take full width */
-    }
-
-    #menu-placeholder nav a,
-    noscript nav a {
-        padding: 8px 15px; /* Add more padding to make links easier to tap */
-        width: 100%; /* Make links fill the list item width */
-    }
-
-    /* Adjust main content padding */
-    main {
-        padding: 0 10px; /* Less horizontal padding on small screens */
-    }
-
-    main section {
-        padding: 15px; /* Less padding inside sections */
-    }
-
-    main section h2 {
-        font-size: 1.3em; /* Smaller heading size */
-    }
-
-    footer {
-        padding: 15px; /* Less padding in footer */
-        font-size: 0.8em; /* Smaller footer font size */
+    /*
+        Responsive adjustment for background size on small screens if needed.
+        Using 100% auto might be too tall on mobile. 'cover' is an alternative
+        that fills the screen but crops. Let's stick to 100% auto for consistency
+        with the "no cropping" requirement, but you could override it here.
+    */
+    body {
+        background-size: 100% auto; /* Keep consistent or change to 'cover' */
+        background-position: center top; /* Adjust vertical position for mobile */
     }
 }
 
 /* --- Optimization for Tablets (768px to 1023px) --- */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-    /* Adjust header padding */
-    header {
-        padding: 15px 25px;
-    }
-
-    .header-container {
-         max-width: 960px; /* Adjust max-width for tablets */
-    }
-
-    header h1 {
-        font-size: 1.8em; /* Slightly smaller title */
-    }
-
-    #menu-placeholder nav li,
-    noscript nav li {
-        margin-left: 15px; /* Adjust menu item spacing */
-    }
-
-    /* Adjust main content padding */
-    main {
-        max-width: 960px; /* Adjust max-width for tablets */
-        padding: 0 25px;
-    }
-
-    main section {
-        padding: 20px;
-    }
-
-    main section h2 {
-        font-size: 1.5em;
-    }
-
-    footer {
-        max-width: 960px; /* Adjust max-width for tablets */
-        margin: 20px auto 0;
-        padding: 20px 25px;
-    }
+    header { padding: 15px 25px; }
+    .header-container { max-width: 960px; }
+    header h1 { font-size: 1.8em; }
+    #menu-placeholder nav li, noscript nav li { margin-left: 15px; }
+    main { max-width: 960px; padding: 0 25px; }
+    main section { padding: 20px; }
+    main section h2 { font-size: 1.5em; }
+    footer { max-width: 960px; margin: 20px auto 0; padding: 20px 25px; }
 }
 
 /* --- Optimization for Desktops (1024px and above) --- */
 @media screen and (min-width: 1024px) {
-    /* Header padding */
-    header {
-        padding: 20px 30px;
-    }
-
-     .header-container {
-         max-width: 1200px; /* Keep desktop max-width */
-    }
-
-    header h1 {
-        font-size: 2em; /* Standard desktop title size */
-    }
-
-    #menu-placeholder nav li,
-    noscript nav li {
-        margin-left: 20px; /* Standard desktop menu spacing */
-    }
-
-    /* Main content padding */
-    main {
-        max-width: 1200px; /* Keep desktop max-width */
-        padding: 0 30px;
-    }
-
-    main section {
-        padding: 25px; /* Slightly more padding inside sections */
-    }
-
-    main section h2 {
-        font-size: 1.8em; /* Standard desktop heading size */
-    }
-
-     footer {
-        max-width: 1200px; /* Keep desktop max-width */
-        margin: 20px auto 0;
-        padding: 20px 30px;
-    }
+    header { padding: 20px 30px; }
+    .header-container { max-width: 1200px; }
+    header h1 { font-size: 2em; }
+    #menu-placeholder nav li, noscript nav li { margin-left: 20px; }
+    main { max-width: 1200px; padding: 0 30px; }
+    main section { padding: 25px; }
+    main section h2 { font-size: 1.8em; }
+    footer { max-width: 1200px; margin: 20px auto 0; padding: 20px 30px; }
 }
 
 
