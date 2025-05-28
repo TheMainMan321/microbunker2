@@ -73,7 +73,7 @@
                 <!--
                     Placeholder for the navigation menu.
                     The JavaScript code at the end of the body will fetch the content
-                    of menumb.html and insert it into this div.
+                    of menugz.html and insert it into this div.
                     We give it an ID so JavaScript can easily find it.
                 -->
                 <div id="menu-placeholder">
@@ -198,21 +198,21 @@
         </footer>
 
         <!--
-            JavaScript to load the menu from menumb.html.
+            JavaScript to load the menu from menugz.html.
             Placed at the end of the body so the HTML structure is loaded
             before the script tries to find the placeholder element.
-            This script is specific to this page because it fetches 'menumb.html'.
+            This script is specific to this page because it fetches 'menugz.html'.
         -->
         <script>
             /*
-                Async function to fetch the content of menumb.html
+                Async function to fetch the content of menugz.html
                 and insert it into the element with id="menu-placeholder".
                 This allows the menu HTML to be managed in a separate file.
             */
             async function loadMenu() {
                 try {
                     // Fetch the menugz.html file
-                    const response = await fetch('menumb.html');
+                    const response = await fetch('menugz.html');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
