@@ -13,6 +13,7 @@
 
     Added styles for dropdown menus and updated menu font to Arvo.
     Corrected background colors for header, main sections, and footer.
+    Implemented fixed header and added padding to body to prevent content overlap.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
@@ -22,28 +23,40 @@
     padding: 0;
 }
 
-/* === 2. Body Styles (Background Color, Image using Variable, Base Font) === */
+/* === 2. Body Styles (Background Color, Image using Variable, Base Font, Padding for Fixed Header) === */
 body {
     font-family: sans-serif; /* Keep this as the ultimate fallback for ALL text */
     line-height: 1.6;
     color: #333;
+
+    /* --- Background --- */
     background-color: #333; /* Dark gray background color underneath everything */
     background-image: var(--page-background-image, none); /* Use CSS variable for image */
     background-repeat: no-repeat;
     background-size: 100% auto; /* Span left-right, maintain aspect ratio */
     background-position: center top;
-    background-attachment: fixed; /* Or 'scroll' */
+    background-attachment: fixed; /* === Keep background fixed === */
+
+    /* === Padding to prevent content from being hidden behind the fixed header === */
+    /* This value will be adjusted in media queries based on header height */
+    padding-top: 90px; /* Default padding-top (adjust for desktop height) */
+    /* ========================================================================== */
 }
 
 /* === 3. Header Layout (Title and Menu Positioning) === */
 header {
     padding: 10px 20px;
-    /* === Header background color - kept dark === */
     background-color: rgba(0, 0, 0, 0.7);
-    /* ========================================= */
     color: #fff;
     position: relative;
     z-index: 10;
+
+    /* === Make the header fixed at the top === */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* ======================================= */
 }
 
 .header-container {
@@ -180,10 +193,11 @@ main section {
 
 main {
     max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
+    margin: 20px auto; /* Keep horizontal centering and bottom margin */
+    padding: 0 20px; /* Keep horizontal padding */
     position: relative;
     z-index: 1;
+    /* No need for padding-top here, it's on the body */
 }
 
 main section h2 {
@@ -199,9 +213,7 @@ footer {
     padding: 20px;
     font-size: 0.9em;
     color: #ccc;
-    /* === Footer background color - kept dark === */
-    background-color: rgba(0, 0, 0, 0.7);
-    /* ========================================= */
+    background-color: rgba(0, 0, 0, 0.7); /* Footer background color - kept dark */
     position: relative;
     z-index: 1;
 }
@@ -211,6 +223,11 @@ footer {
 
 /* --- Optimization for Phones (up to 767px) --- */
 @media screen and (max-width: 767px) {
+    /* === Adjust body padding-top for mobile header height === */
+    /* Estimate based on stacked title + menu + header padding */
+    padding-top: 160px; /* Adjust this value if content is still hidden */
+    /* ======================================================== */
+
     header { padding: 10px 15px; }
     .header-container { flex-direction: column; align-items: flex-start; }
     header h1 { font-size: 1.5em; margin-bottom: 10px; }
@@ -266,6 +283,10 @@ footer {
 
 /* --- Optimization for Tablets (768px to 1023px) --- */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
+    /* === Adjust body padding-top for tablet header height === */
+    padding-top: 70px; /* Adjust this value if content is still hidden */
+    /* ======================================================= */
+
     header { padding: 15px 25px; }
     .header-container { max-width: 960px; }
     header h1 { font-size: 1.8em; }
@@ -279,6 +300,10 @@ footer {
 
 /* --- Optimization for Desktops (1024px and above) --- */
 @media screen and (min-width: 1024px) {
+    /* === Adjust body padding-top for desktop header height === */
+    padding-top: 90px; /* Adjust this value if content is still hidden */
+    /* ======================================================== */
+
     header { padding: 20px 30px; }
     .header-container { max-width: 1200px; }
     header h1 { font-size: 2em; }
