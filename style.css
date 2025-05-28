@@ -1,3 +1,5 @@
+--- START OF FILE style.css ---
+
 /*
     style.css
 
@@ -12,8 +14,6 @@
     The styling properties (size, position, etc.) are defined here in style.css.
 
     Added styles for dropdown menus and updated menu font to Arvo.
-    Adjusted layout to position background image area below a fixed header.
-    Updated transparency for content sections.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
@@ -177,21 +177,24 @@ noscript nav a {
 
 
 /* === 5. Main Content Area Styles === */
+/*
+    This rule applies the semi-transparent white background to header,
+    all sections within main (including .hero), and footer.
+    The transparency is already set to 0.9 here.
+*/
+header, main section, footer {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for content blocks */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
 main {
     max-width: 1200px;
     margin: 20px auto;
     padding: 0 20px;
     position: relative;
     z-index: 1;
-}
-
-main section {
-    /* === Changed transparency from 0.9 to 0.7 here === */
-    background-color: rgba(255, 255, 255, 0.7);
-    /* =============================================== */
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
 }
 
 main section h2 {
@@ -202,15 +205,7 @@ main section h2 {
 }
 
 /* === 6. Footer Styles === */
-footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9em;
-    color: #ccc;
-    background-color: rgba(0, 0, 0, 0.7);
-    position: relative;
-    z-index: 1;
-}
+/* Footer styles are included in the combined rule above */
 
 
 /* === 7. Responsive Adjustments (Media Queries) === */
