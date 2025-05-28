@@ -47,11 +47,12 @@
         This allows each HTML file to specify its own image path while
         sharing the same background styling rules defined in style.css.
 
-        Using a relative path 'images/microbunker2.png' which assumes the 'images'
-        folder is in the same directory as this index.html file.
-        If hosting on GitHub Pages, you might need the absolute path '/images/microbunker.png'.
+        Using an absolute path '/images/microbunker.png' which assumes the 'images'
+        folder is at the root of your GitHub Pages site (e.g., https://user.github.io/repo/images/).
+        If your image is named 'microbunker2.png', update the filename accordingly.
     -->
-    <body style="--page-background-image: url('images/microbunker2.png');">
+    <body style="--page-background-image: url('/images/microbunker.png');">
+        <!--                                     ^^^^^^^^^^^^^^^^^^^^^^^ CHANGED PATH HERE -->
         <!--
             <body>
             Contains all the visible content of the web page.
