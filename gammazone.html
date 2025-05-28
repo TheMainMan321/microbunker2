@@ -8,126 +8,177 @@
     A background image is added using a CSS variable.
 -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Micro Bunker | Gamma Zone</title>
-    <!-- Updated title for the Gamma Zone page -->
-
-    <!-- Link to the external CSS file for styling (same style.css for all pages) -->
-    <link rel="stylesheet" href="style.css">
-
-</head>
-<!--
-    Add a 'style' attribute to the body tag to define a CSS variable
-    '--page-background-image'. The value of this variable is the URL
-    of the background image specific to this page.
-    The style.css file will use this variable for the background-image property.
-    This allows each HTML file to specify its own image path while
-    sharing the same background styling rules defined in style.css.
--->
-<body style="--page-background-image: url('images/microbunker.png');">
     <!--
-        <body>
-        Contains all the visible content of the web page.
-        Uses the same body styles (background, font, etc.) from style.css.
+        The <html> element is the root of the HTML page.
+        lang="en" specifies the language of the document.
     -->
+    <head>
+        <!--
+            <head>
+            Contains meta-information about the HTML document, not visible content.
+        -->
+        <meta charset="UTF-8">
+        <!-- Specifies the character encoding for the document (UTF-8 supports most characters). -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Configures the viewport for responsive design on different devices. -->
+        <title>Micro Bunker | Gamma Zone</title>
+        <!-- Sets the title displayed in the browser tab. Updated for the Gamma Zone page. -->
 
-    <header>
-        <!-- Header area containing the site title and navigation -->
-        <div class="header-container">
-            <h1>Micro Bunker</h1>
-            <!-- Site title -->
+        <!-- === Google Font: Arvo === -->
+        <!--
+            These link tags load the Arvo font from Google Fonts.
+            Add these lines to the <head> of ALL your HTML files.
+        -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap" rel="stylesheet">
+        <!-- ======================== -->
 
-            <!--
-                Placeholder for the navigation menu.
-                The JavaScript below will fetch the content of menugz.html
-                and insert it here.
-            -->
-            <div id="menu-placeholder">
+        <!-- Link to the external CSS file for styling (same style.css for all pages) -->
+        <link rel="stylesheet" href="style.css">
+        <!-- This links this HTML file to style.css, applying its styles. -->
+
+        <!-- You can add other things here like favicons, other meta tags, etc. -->
+
+    </head>
+    <!--
+        Add a 'style' attribute to the body tag to define a CSS variable
+        '--page-background-image'. The value of this variable is the URL
+        of the background image specific to this page.
+        The style.css file will use this variable for the background-image property.
+        This allows each HTML file to specify its own image path while
+        sharing the same background styling rules defined in style.css.
+
+        Using a relative path 'images/microbunker.png' which assumes the 'images'
+        folder is in the same directory as this gammazone.html file.
+        If hosting on GitHub Pages, you might need the absolute path '/images/microbunker.png'.
+    -->
+    <body style="--page-background-image: url('images/microbunker.png');">
+        <!--
+            <body>
+            Contains all the visible content of the web page.
+            Uses the same body styles (background, font, etc.) from style.css.
+        -->
+
+        <header>
+            <!-- Header area containing the site title and navigation -->
+            <div class="header-container">
+                <!-- A container div to help with positioning title and menu using CSS -->
+                <h1>Micro Bunker</h1>
+                <!-- Site title -->
+
                 <!--
-                    Fallback navigation for users with JavaScript disabled.
-                    Ensure links point to the correct pages.
+                    Placeholder for the navigation menu.
+                    The JavaScript below will fetch the content of menugz.html
+                    and insert it here.
+                    We give it an ID so JavaScript can easily find it.
                 -->
-                <noscript>
-                    <nav>
-                        <ul>
-                            <li><a href="index.html">Micro Bunker</a></li>
-                            <li><a href="gammazone.html">Gamma Zone</a></li>
-                            <li><a href="vikingbrawl.html">Viking Brawl</a></li>
-                            <li><a href="cowpoke.html">Cowpoke</a></li>
-                            <li><a href="othergames.html">Other Games</a></li>
-                        </ul>
-                    </nav>
-                </noscript>
+                <div id="menu-placeholder">
+                    <!--
+                        Fallback navigation for users with JavaScript disabled.
+                        Ensure links point to the correct pages.
+                    -->
+                    <noscript>
+                        <!--
+                            <noscript> tag content is displayed only if JavaScript is disabled.
+                            This provides basic navigation functionality even without JS.
+                        -->
+                        <nav>
+                            <ul>
+                                <li><a href="index.html">Micro Bunker</a></li>
+                                <li><a href="gammazone.html">Gamma Zone</a></li>
+                                <li><a href="vikingbrawl.html">Viking Brawl</a></li>
+                                <li><a href="cowpoke.html">Cowpoke</a></li>
+                                <li><a href="othergames.html">Other Games</a></li>
+                            </ul>
+                        </nav>
+                    </noscript>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <main>
-        <!-- Main content area specific to the Gamma Zone page -->
+        <main>
+            <!--
+                <main>
+                Represents the dominant content of the <body>.
+                This section contains content specific to the Gamma Zone page.
+            -->
 
-        <section class="hero">
-            <!-- Hero section for the Gamma Zone page -->
-            <h2>Welcome to the Gamma Zone!</h2>
-            <p>Explore the irradiated wasteland in this thrilling adventure.</p>
-            <!-- Add more content specific to Gamma Zone here -->
-        </section>
+            <section class="hero">
+                <!-- Hero section for the Gamma Zone page -->
+                <h2>Welcome to the Gamma Zone!</h2>
+                <p>Explore the irradiated wasteland in this thrilling adventure.</p>
+                <!-- Add more content specific to Gamma Zone here -->
+            </section>
 
-        <section class="content-section">
-             <!-- Another section for Gamma Zone details -->
-            <h2>About Gamma Zone</h2>
-            <p>Learn about the gameplay, characters, and challenges in Gamma Zone.</p>
-            <!-- Add details about the game -->
-        </section>
+            <section class="content-section">
+                 <!-- Another section for Gamma Zone details -->
+                <h2>About Gamma Zone</h2>
+                <p>Learn about the gameplay, characters, and challenges in Gamma Zone.</p>
+                <!-- Add details about the game -->
+            </section>
 
-        <!-- Add more sections specific to Gamma Zone as needed -->
+            <!-- Add more sections specific to Gamma Zone as needed -->
 
-    </main>
+        </main>
 
-    <footer>
-        <!-- Footer content -->
-        <p>© <span id="current-year"></span> Micro Bunker. All rights reserved.</p>
-        <!-- Copyright text -->
-    </footer>
+        <footer>
+            <!--
+                <footer>
+                Represents the footer content for the page.
+                Typically contains copyright, links to legal pages, etc.
+            -->
+            <p>© <span id="current-year"></span> Micro Bunker. All rights reserved.</p>
+            <!--
+                © is the HTML entity for the copyright symbol.
+                <span id="current-year"></span> is a placeholder for the year,
+                which will be filled by the JavaScript below.
+            -->
+            <!-- Add other footer links/content here if needed -->
+        </footer>
 
-    <!--
-        JavaScript to load the menu from menugz.html.
-        This script is specific to this page because it fetches 'menugz.html'.
-    -->
-    <script>
-        /*
-            Async function to fetch the content of menugz.html
-            and insert it into the element with id="menu-placeholder".
-        */
-        async function loadMenu() {
-            try {
-                // Fetch the menugz.html file
-                const response = await fetch('menugz.html');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+        <!--
+            JavaScript to load the menu from menugz.html.
+            Placed at the end of the body so the HTML structure is loaded
+            before the script tries to find the placeholder element.
+            This script is specific to this page because it fetches 'menugz.html'.
+        -->
+        <script>
+            /*
+                Async function to fetch the content of menugz.html
+                and insert it into the element with id="menu-placeholder".
+            */
+            async function loadMenu() {
+                try {
+                    // Fetch the menugz.html file
+                    const response = await fetch('menugz.html');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const menuHtml = await response.text();
+                    const menuPlaceholder = document.getElementById('menu-placeholder');
+                    if (menuPlaceholder) {
+                        menuPlaceholder.innerHTML = menuHtml;
+                    } else {
+                        console.warn('Menu placeholder element with ID "menu-placeholder" not found.');
+                    }
+                } catch (error) {
+                    console.error('Failed to load menu:', error);
                 }
-                const menuHtml = await response.text();
-                const menuPlaceholder = document.getElementById('menu-placeholder');
-                if (menuPlaceholder) {
-                    menuPlaceholder.innerHTML = menuHtml;
-                } else {
-                    console.warn('Menu placeholder element with ID "menu-placeholder" not found.');
-                }
-            } catch (error) {
-                console.error('Failed to load menu:', error);
+                // Note: The fallback <noscript> menu is already in the HTML
             }
-        }
-        loadMenu(); // Call the function to load the menu
+            loadMenu(); // Call the function to load the menu
 
-        /*
-            Simple script to update the copyright year automatically.
-        */
-        const yearSpan = document.getElementById('current-year');
-        if (yearSpan) {
-            yearSpan.textContent = new Date().getFullYear();
-        }
-    </script>
+            /*
+                Simple script to update the copyright year automatically.
+                This finds the span with id="current-year" and sets its text
+                to the current full year.
+            */
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) { // Check if the element exists before trying to modify it
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        </script>
 
-</body>
+    </body>
 </html>

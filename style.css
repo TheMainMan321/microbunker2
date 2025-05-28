@@ -11,7 +11,7 @@
     body element in each HTML file to specify the background image URL.
     The styling properties (size, position, etc.) are defined here in style.css.
 
-    Added styles for dropdown menus.
+    Added styles for dropdown menus and updated menu font to Arvo.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
@@ -23,7 +23,7 @@
 
 /* === 2. Body Styles (Background Color, Image using Variable, Base Font) === */
 body {
-    font-family: sans-serif;
+    font-family: sans-serif; /* Keep this as the ultimate fallback for ALL text */
     line-height: 1.6;
     color: #333;
     background-color: #333; /* Dark gray background color underneath everything */
@@ -55,6 +55,8 @@ header h1 {
     font-size: 2em;
     margin: 0;
     color: #fff;
+    /* Optional: Apply Arvo to the title as well if you like */
+    /* font-family: 'Arvo', serif; /* Arvo is a serif font */
 }
 
 /* === 4. Navigation Menu Styles (Including Dropdowns) === */
@@ -66,17 +68,16 @@ header h1 {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; /* Makes main menu items horizontal */
-    justify-content: center; /* Center main menu items horizontally */
+    display: flex;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
 /* Style for main menu list items */
 #menu-placeholder nav li {
-    margin-left: 20px; /* Space between main menu items */
-    position: relative; /* Needed for positioning the dropdown relative to the list item */
-    /* display: inline-block; /* Flex items don't strictly need this */
+    margin-left: 20px;
+    position: relative;
 }
 
 /* Style for main menu links */
@@ -87,6 +88,9 @@ header h1 {
     padding: 5px 10px;
     display: inline-block;
     transition: color 0.3s ease;
+    /* === Apply Arvo font here === */
+    font-family: 'Arvo', serif; /* Arvo is a serif font, use serif as fallback */
+    /* ========================== */
 }
 
 #menu-placeholder nav a:hover {
@@ -97,51 +101,53 @@ header h1 {
 
 /* Hide the dropdown menus by default */
 #menu-placeholder nav ul li .dropdown {
-    display: none; /* Hide the nested ul */
-    position: absolute; /* Position relative to the parent li */
-    top: 100%; /* Place the top edge of the dropdown right below the parent li */
-    left: 0; /* Align the left edge of the dropdown with the parent li */
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background for dropdown */
-    min-width: 180px; /* Minimum width for the dropdown */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Add a subtle shadow */
-    z-index: 1; /* Ensure dropdown appears above other content */
-    padding: 10px 0; /* Vertical padding inside the dropdown box */
-    border-radius: 0 0 8px 8px; /* Optional: Round the bottom corners */
-    list-style: none; /* Remove bullets from dropdown list */
-    margin: 0; /* Remove default margin */
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px 0;
+    border-radius: 0 0 8px 8px;
+    list-style: none;
+    margin: 0;
 }
 
 /* Style for list items within the dropdown */
 #menu-placeholder nav ul li .dropdown li {
-    display: block; /* Make dropdown items stack vertically */
-    margin: 0; /* Remove horizontal margin */
-    padding: 0; /* Remove padding */
+    display: block;
+    margin: 0;
+    padding: 0;
 }
 
 /* Style for links within the dropdown */
 #menu-placeholder nav ul li .dropdown li a {
-    color: #fff; /* Link color in dropdown */
-    padding: 8px 16px; /* Padding for dropdown links */
+    color: #fff;
+    padding: 8px 16px;
     text-decoration: none;
-    display: block; /* Make the link fill the width for easier clicking */
-    font-weight: normal; /* Make dropdown links not bold */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition on hover */
+    display: block;
+    font-weight: normal;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* === Apply Arvo font here === */
+    font-family: 'Arvo', serif; /* Arvo is a serif font, use serif as fallback */
+    /* ========================== */
 }
 
 /* Style for links within the dropdown on hover */
 #menu-placeholder nav ul li .dropdown li a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Subtle background highlight on hover */
-    color: #007bff; /* Change text color on hover */
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #007bff;
 }
 
 /* Show the dropdown menu when the parent list item is hovered */
 #menu-placeholder nav ul li.has-dropdown:hover > .dropdown {
-    display: block; /* Show the nested ul with class 'dropdown' */
+    display: block;
 }
 
 /* Style for the <noscript> fallback menu */
 /* This ensures the fallback menu also looks decent if JS is off */
-/* Note: Dropdowns won't work in the <noscript> fallback without JS */
 noscript nav ul {
      list-style: none;
      padding: 0;
@@ -162,6 +168,9 @@ noscript nav a {
     font-weight: bold;
     padding: 5px 10px;
     display: inline-block;
+    /* === Apply Arvo font here === */
+    font-family: 'Arvo', serif; /* Arvo is a serif font, use serif as fallback */
+    /* ========================== */
 }
 
 
@@ -184,6 +193,8 @@ main section {
 main section h2 {
     color: #333;
     margin-bottom: 15px;
+    /* Optional: Apply Arvo to headings if you like */
+    /* font-family: 'Arvo', serif; */
 }
 
 /* === 6. Footer Styles === */
@@ -206,7 +217,6 @@ footer {
     .header-container { flex-direction: column; align-items: flex-start; }
     header h1 { font-size: 1.5em; margin-bottom: 10px; }
 
-    /* Stack main menu items vertically on phones */
     #menu-placeholder nav ul, noscript nav ul {
         flex-direction: column;
         align-items: flex-start;
@@ -225,35 +235,35 @@ footer {
     }
 
     /* --- Dropdown adjustments for phones --- */
-    /* Dropdowns should appear below their parent, but might need full width */
     #menu-placeholder nav ul li .dropdown {
-        position: static; /* Remove absolute positioning */
-        top: auto; /* Remove top positioning */
-        left: auto; /* Remove left positioning */
-        width: 100%; /* Make dropdown take full width */
-        min-width: auto; /* Remove min-width constraint */
-        background-color: rgba(0, 0, 0, 0.5); /* Slightly lighter background for nested items */
-        box-shadow: none; /* Remove shadow */
-        border-radius: 0; /* Remove border radius */
-        padding: 0 10px; /* Add horizontal padding */
+        position: static;
+        top: auto;
+        left: auto;
+        width: 100%;
+        min-width: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0 10px;
     }
 
     #menu-placeholder nav ul li .dropdown li a {
         padding: 8px 25px; /* Indent dropdown links */
     }
 
-    /* Show dropdowns on phones - they will just be part of the stacked list */
-    /* The :hover rule might not work well on touch screens, but display: block
-       is handled by the parent li's display: block */
-    #menu-placeholder nav ul li.has-dropdown > .dropdown {
-         display: block; /* Always show dropdown on mobile when parent is stacked */
+    #menu-placeholder nav ul li.has-dropdown:hover > .dropdown {
+         display: block;
     }
-
 
     main { padding: 0 10px; }
     main section { padding: 15px; }
     main section h2 { font-size: 1.3em; }
     footer { padding: 15px; font-size: 0.8em; }
+
+    body {
+        background-size: 100% auto;
+        background-position: center top;
+    }
 }
 
 /* --- Optimization for Tablets (768px to 1023px) --- */
@@ -266,11 +276,7 @@ footer {
     main section { padding: 20px; }
     main section h2 { font-size: 1.5em; }
     footer { max-width: 960px; margin: 20px auto 0; padding: 20px 25px; }
-
-    /* Dropdown adjustments for tablets if needed */
-    #menu-placeholder nav ul li .dropdown {
-        min-width: 160px; /* Adjust dropdown width for tablets */
-    }
+    #menu-placeholder nav ul li .dropdown { min-width: 160px; }
 }
 
 /* --- Optimization for Desktops (1024px and above) --- */
@@ -283,11 +289,7 @@ footer {
     main section { padding: 25px; }
     main section h2 { font-size: 1.8em; }
     footer { max-width: 1200px; margin: 20px auto 0; padding: 20px 30px; }
-
-    /* Dropdown adjustments for desktops */
-    #menu-placeholder nav ul li .dropdown {
-        min-width: 180px; /* Standard desktop dropdown width */
-    }
+    #menu-placeholder nav ul li .dropdown { min-width: 180px; }
 }
 
 
