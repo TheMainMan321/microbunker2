@@ -14,6 +14,7 @@
     Added styles for dropdown menus and updated menu font to Arvo.
     Corrected background colors for header, main sections, and footer.
     Implemented fixed header and added padding to body to prevent content overlap.
+    Modified footer styling to span full width with centered content.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
@@ -50,21 +51,26 @@ header {
     color: #fff;
     position: relative;
     z-index: 10;
-
-    /* === Make the header fixed at the top === */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    /* ======================================= */
 }
+
+/* === Apply max-width and centering ONLY to header and main === */
+header, main {
+    max-width: 1200px; /* Limit width on large screens */
+    margin: 0 auto; /* Center the container if max-width is set */
+    /* Footer is removed from this rule */
+}
+/* =========================================================== */
+
 
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    /* max-width and margin: auto are now on the header element itself */
 }
 
 header h1 {
@@ -191,13 +197,13 @@ main section {
     border-radius: 8px;
 }
 
+/* main { max-width and margin: auto are now in the combined rule above } */
 main {
-    max-width: 1200px;
-    margin: 20px auto; /* Keep horizontal centering and bottom margin */
+    margin-top: 20px; /* Keep top margin for main content below header padding */
+    margin-bottom: 20px; /* Keep bottom margin for main content above footer */
     padding: 0 20px; /* Keep horizontal padding */
     position: relative;
     z-index: 1;
-    /* No need for padding-top here, it's on the body */
 }
 
 main section h2 {
@@ -209,14 +215,27 @@ main section h2 {
 
 /* === 6. Footer Styles === */
 footer {
-    text-align: center;
-    padding: 20px;
+    /* === Footer background color - kept dark and spans full width === */
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%; /* Ensure it spans full width */
+    /* max-width and margin: auto are removed from the footer element */
+    /* ============================================================== */
+
+    text-align: center; /* Center text within the footer */
+    padding: 20px 0; /* Add vertical padding, remove horizontal padding from footer element */
     font-size: 0.9em;
     color: #ccc;
-    background-color: rgba(0, 0, 0, 0.7); /* Footer background color - kept dark */
     position: relative;
     z-index: 1;
 }
+
+/* === Style for the container INSIDE the footer to center content === */
+.footer-content {
+    max-width: 1200px; /* Limit the width of the content */
+    margin: 0 auto; /* Center the content block horizontally */
+    padding: 0 20px; /* Add horizontal padding inside the content block */
+}
+/* ================================================================= */
 
 
 /* === 7. Responsive Adjustments (Media Queries) === */
@@ -224,11 +243,15 @@ footer {
 /* --- Optimization for Phones (up to 767px) --- */
 @media screen and (max-width: 767px) {
     /* === Adjust body padding-top for mobile header height === */
-    /* Estimate based on stacked title + menu + header padding */
-    padding-top: 160px; /* Adjust this value if content is still hidden */
+    body {
+        padding-top: 160px; /* Adjust this value if content is still hidden */
+    }
     /* ======================================================== */
 
     header { padding: 10px 15px; }
+    /* max-width and margin: auto are now on the header element */
+    header { max-width: 100%; margin: 0 auto; } /* Ensure header is full width on mobile */
+
     .header-container { flex-direction: column; align-items: flex-start; }
     header h1 { font-size: 1.5em; margin-bottom: 10px; }
 
@@ -273,7 +296,11 @@ footer {
     main { padding: 0 10px; }
     main section { padding: 15px; }
     main section h2 { font-size: 1.3em; }
-    footer { padding: 15px; font-size: 0.8em; }
+
+    /* === Adjust footer padding and content padding for mobile === */
+    footer { padding: 15px 0; } /* Vertical padding on footer */
+    .footer-content { padding: 0 15px; } /* Horizontal padding on inner content */
+    /* ============================================================ */
 
     body {
         background-size: 100% auto;
@@ -284,34 +311,52 @@ footer {
 /* --- Optimization for Tablets (768px to 1023px) --- */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     /* === Adjust body padding-top for tablet header height === */
-    padding-top: 70px; /* Adjust this value if content is still hidden */
+    body {
+        padding-top: 70px; /* Adjust this value if content is still hidden */
+    }
     /* ======================================================= */
 
     header { padding: 15px 25px; }
-    .header-container { max-width: 960px; }
+    header, main { max-width: 960px; margin: 0 auto; } /* Adjust max-width for tablets */
+
+    .header-container { /* max-width and margin: auto are now on the header element */ }
     header h1 { font-size: 1.8em; }
     #menu-placeholder nav li, noscript nav li { margin-left: 15px; }
-    main { max-width: 960px; padding: 0 25px; }
+    main { margin-top: 20px; margin-bottom: 20px; padding: 0 25px; } /* Keep main margins/padding */
     main section { padding: 20px; }
     main section h2 { font-size: 1.5em; }
-    footer { max-width: 960px; margin: 20px auto 0; padding: 20px 25px; }
+
+    /* === Adjust footer content padding for tablets === */
+    footer { padding: 20px 0; } /* Vertical padding on footer */
+    .footer-content { max-width: 960px; margin: 0 auto; padding: 0 25px; } /* Adjust content width/padding */
+    /* =================================================== */
+
     #menu-placeholder nav ul li .dropdown { min-width: 160px; }
 }
 
 /* --- Optimization for Desktops (1024px and above) --- */
 @media screen and (min-width: 1024px) {
     /* === Adjust body padding-top for desktop header height === */
-    padding-top: 90px; /* Adjust this value if content is still hidden */
+    body {
+        padding-top: 90px; /* Adjust this value if content is still hidden */
+    }
     /* ======================================================== */
 
     header { padding: 20px 30px; }
-    .header-container { max-width: 1200px; }
+    header, main { max-width: 1200px; margin: 0 auto; } /* Standard desktop max-width */
+
+    .header-container { /* max-width and margin: auto are now on the header element */ }
     header h1 { font-size: 2em; }
     #menu-placeholder nav li, noscript nav li { margin-left: 20px; }
-    main { max-width: 1200px; padding: 0 30px; }
+    main { margin-top: 20px; margin-bottom: 20px; padding: 0 30px; } /* Keep main margins/padding */
     main section { padding: 25px; }
     main section h2 { font-size: 1.8em; }
-    footer { max-width: 1200px; margin: 20px auto 0; padding: 20px 30px; }
+
+    /* === Adjust footer content padding for desktops === */
+    footer { padding: 20px 0; } /* Vertical padding on footer */
+    .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 30px; } /* Adjust content width/padding */
+    /* =================================================== */
+
     #menu-placeholder nav ul li .dropdown { min-width: 180px; }
 }
 

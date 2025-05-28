@@ -55,10 +55,16 @@
         <!--
             <body>
             Contains all the visible content of the web page.
+            Padding is added to the top of the body via style.css to
+            prevent content from being hidden behind the fixed header.
         -->
 
         <header>
-            <!-- Header area containing the site title and navigation -->
+            <!--
+                <header>
+                Represents introductory content, typically containing the site title and navigation.
+                This header is fixed at the top of the viewport via style.css.
+            -->
             <div class="header-container">
                 <!-- A container div to help with positioning title and menu using CSS -->
                 <h1>Micro Bunker</h1>
@@ -101,7 +107,7 @@
                 This section contains content specific to the homepage.
 
                 The previous <section class="hero"> has been removed.
-                The content block is now wrapped in a <section> again to apply styling.
+                The main content block is wrapped in a <section> to apply styling.
             -->
 
             <!-- Removed <section class="hero"> -->
@@ -121,7 +127,6 @@
                     Removed the margin-bottom from the inline style as it's handled by the section.
                 -->
                 <div style="max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; line-height: 1.7;">
-                    <!--                                       ^^^^^^^^^^ Removed margin-bottom -->
 
                     <h1 style="color: #2c3e50; text-align: center; margin-bottom: 20px; font-size: 2.5em;">Welcome to the <strong>Micro Bunker!</strong></h1>
                     <h2 style="color: #2c3e50; text-align: center; margin-bottom: 20px; font-size: 1.8em;">Your Fortified HQ for 28mm Skirmish Wargaming Adventures</h2>
@@ -179,14 +184,19 @@
                 <footer>
                 Represents the footer content for the page.
                 Typically contains copyright, links to legal pages, etc.
+                The footer element itself now spans the full width.
             -->
-            <p>© <span id="current-year"></span> Micro Bunker. All rights reserved.</p>
-            <!--
-                © is the HTML entity for the copyright symbol.
-                <span id="current-year"></span> is a placeholder for the year,
-                which will be filled by the JavaScript below.
-            -->
-            <!-- Add other footer links/content here if needed -->
+            <!-- === Container div to center and limit the width of the footer content === -->
+            <div class="footer-content">
+                <p>© <span id="current-year"></span> Micro Bunker. All rights reserved.</p>
+                <!--
+                    © is the HTML entity for the copyright symbol.
+                    <span id="current-year"></span> is a placeholder for the year,
+                    which will be filled by the JavaScript below.
+                -->
+                <!-- Add other footer links/content here if needed -->
+            </div>
+            <!-- ======================================================================= -->
         </footer>
 
         <!--
