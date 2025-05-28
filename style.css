@@ -17,6 +17,7 @@
     Modified footer styling to span full width with centered content.
     Adjusted width and centering for the specific .content-section on the homepage.
     Corrected header styling so its background spans the full width.
+    Applied Arvo font, weight, and size to the main site title in the header to match the menu.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
@@ -53,17 +54,13 @@ header {
     color: #fff;
     position: relative;
     z-index: 10;
-
-    /* === Make the header fixed at the top and span full width === */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%; /* Ensure header element spans full width */
-    /* ========================================================== */
 }
 
 /* === Apply max-width and centering ONLY to main content area === */
-/* Header is removed from this rule */
 main {
     max-width: 1200px; /* Limit width of main content on large screens */
     margin: 0 auto; /* Center the main content block horizontally */
@@ -82,11 +79,13 @@ main {
 }
 
 header h1 {
-    font-size: 2em;
-    margin: 0;
-    color: #fff;
-    /* Optional: Apply Arvo to the title as well if you like */
-    /* font-family: 'Arvo', serif; /* Arvo is a serif font */
+    /* === Apply Arvo font, bold weight, and default size to the site title === */
+    font-family: 'Arvo', serif; /* Arvo is a serif font, use serif as fallback */
+    font-weight: bold; /* Match menu link weight */
+    /* Removed font-size: 2em; to match menu link's inherited default size */
+    /* ===================================================================== */
+    margin: 0; /* Keep margin */
+    color: #fff; /* Keep color */
 }
 
 /* === 4. Navigation Menu Styles (Including Dropdowns) === */
@@ -152,7 +151,7 @@ header h1 {
     padding: 8px 16px;
     text-decoration: none;
     display: block;
-    font-weight: normal;
+    font-weight: normal; /* Keep normal weight for sub-items */
     transition: background-color 0.3s ease, color 0.3s ease;
     font-family: 'Arvo', serif;
 }
@@ -268,7 +267,12 @@ footer {
     .header-container { max-width: 100%; margin: 0 auto; flex-direction: column; align-items: flex-start; } /* Center content, stack items */
     /* =================================================== */
 
-    header h1 { font-size: 1.5em; margin-bottom: 10px; }
+    header h1 {
+        /* === Adjust h1 size for mobile === */
+        font-size: 1.5em; /* Keep a slightly larger size than menu links on mobile */
+        /* ================================ */
+        margin-bottom: 10px;
+    }
 
     #menu-placeholder nav ul, noscript nav ul {
         flex-direction: column;
@@ -313,7 +317,11 @@ footer {
     main { max-width: 960px; margin: 0 auto; } /* Adjust main max-width for tablets */
     main { margin-top: 20px; margin-bottom: 20px; padding: 0 25px; } /* Keep main margins/padding */
 
-    header h1 { font-size: 1.8em; }
+    header h1 {
+        /* === Adjust h1 size for tablet === */
+        font-size: 1.8em; /* Keep a slightly larger size than menu links on tablet */
+        /* ================================ */
+    }
     #menu-placeholder nav li, noscript nav li { margin-left: 15px; }
     main section { padding: 20px; }
     main section h2 { font-size: 1.5em; }
@@ -344,7 +352,13 @@ footer {
     main { max-width: 1200px; margin: 0 auto; } /* Standard desktop main max-width */
     main { margin-top: 20px; margin-bottom: 20px; padding: 0 30px; } /* Keep main margins/padding */
 
-    header h1 { font-size: 2em; }
+    header h1 {
+        /* === Adjust h1 size for desktop === */
+        /* Removed font-size: 2em; to match menu link's inherited default size */
+        /* Re-adding it here to keep the title larger than the menu on desktop */
+        font-size: 2em;
+        /* ================================= */
+    }
     #menu-placeholder nav li, noscript nav li { margin-left: 20px; }
     main section { padding: 25px; }
     main section h2 { font-size: 1.8em; }
