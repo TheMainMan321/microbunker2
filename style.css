@@ -15,6 +15,7 @@
     Corrected background colors for header, main sections, and footer.
     Implemented fixed header and added padding to body to prevent content overlap.
     Modified footer styling to span full width with centered content.
+    Adjusted width and centering for the specific .content-section on the homepage.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
@@ -195,9 +196,10 @@ main section {
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 8px;
+    /* Removed max-width and margin: auto from here */
 }
 
-/* main { max-width and margin: auto are now in the combined rule above } */
+/* main { max-width and margin: auto are in the combined rule above } */
 main {
     margin-top: 20px; /* Keep top margin for main content below header padding */
     margin-bottom: 20px; /* Keep bottom margin for main content above footer */
@@ -205,6 +207,23 @@ main {
     position: relative;
     z-index: 1;
 }
+
+/* === Style for the specific content section on the homepage === */
+/*
+    This makes the .content-section narrower than the main container
+    and centers it horizontally within the main area.
+    Adjust the max-width value as needed. 1000px is an estimate
+    to leave about 100px space on each side of the 800px inner div
+    within the 1200px main area.
+*/
+.content-section {
+    max-width: 1000px; /* Set the maximum width for this specific section */
+    margin-left: auto; /* Center the section horizontally */
+    margin-right: auto; /* Center the section horizontally */
+    /* margin-top and margin-bottom are handled by the general main section rule */
+}
+/* ========================================================================= */
+
 
 main section h2 {
     color: #333;
@@ -215,12 +234,8 @@ main section h2 {
 
 /* === 6. Footer Styles === */
 footer {
-    /* === Footer background color - kept dark and spans full width === */
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.7); /* Footer background color - kept dark and spans full width */
     width: 100%; /* Ensure it spans full width */
-    /* max-width and margin: auto are removed from the footer element */
-    /* ============================================================== */
-
     text-align: center; /* Center text within the footer */
     padding: 20px 0; /* Add vertical padding, remove horizontal padding from footer element */
     font-size: 0.9em;
@@ -235,23 +250,14 @@ footer {
     margin: 0 auto; /* Center the content block horizontally */
     padding: 0 20px; /* Add horizontal padding inside the content block */
 }
-/* ================================================================= */
 
 
 /* === 7. Responsive Adjustments (Media Queries) === */
 
 /* --- Optimization for Phones (up to 767px) --- */
 @media screen and (max-width: 767px) {
-    /* === Adjust body padding-top for mobile header height === */
-    body {
-        padding-top: 160px; /* Adjust this value if content is still hidden */
-    }
-    /* ======================================================== */
-
-    header { padding: 10px 15px; }
-    /* max-width and margin: auto are now on the header element */
-    header { max-width: 100%; margin: 0 auto; } /* Ensure header is full width on mobile */
-
+    body { padding-top: 160px; } /* Adjust body padding-top for mobile header height */
+    header { padding: 10px 15px; max-width: 100%; margin: 0 auto; } /* Ensure header is full width on mobile */
     .header-container { flex-direction: column; align-items: flex-start; }
     header h1 { font-size: 1.5em; margin-bottom: 10px; }
 
@@ -260,47 +266,31 @@ footer {
         align-items: flex-start;
         width: 100%;
     }
-
-    #menu-placeholder nav li, noscript nav li {
-        margin: 5px 0;
-        margin-left: 0;
-        width: 100%;
-    }
-
-    #menu-placeholder nav a, noscript nav a {
-        padding: 8px 15px;
-        width: 100%;
-    }
+    #menu-placeholder nav li, noscript nav li { margin: 5px 0; margin-left: 0; width: 100%; }
+    #menu-placeholder nav a, noscript nav a { padding: 8px 15px; width: 100%; }
 
     /* --- Dropdown adjustments for phones --- */
     #menu-placeholder nav ul li .dropdown {
-        position: static;
-        top: auto;
-        left: auto;
-        width: 100%;
-        min-width: auto;
-        background-color: rgba(0, 0, 0, 0.5);
-        box-shadow: none;
-        border-radius: 0;
-        padding: 0 10px;
+        position: static; top: auto; left: auto; width: 100%; min-width: auto;
+        background-color: rgba(0, 0, 0, 0.5); box-shadow: none; border-radius: 0; padding: 0 10px;
     }
-
-    #menu-placeholder nav ul li .dropdown li a {
-        padding: 8px 25px; /* Indent dropdown links */
-    }
-
-    #menu-placeholder nav ul li.has-dropdown:hover > .dropdown {
-         display: block;
-    }
+    #menu-placeholder nav ul li .dropdown li a { padding: 8px 25px; } /* Indent dropdown links */
+    #menu-placeholder nav ul li.has-dropdown:hover > .dropdown { display: block; }
 
     main { padding: 0 10px; }
-    main section { padding: 15px; }
+    main section { padding: 15px; } /* Adjust padding inside sections */
     main section h2 { font-size: 1.3em; }
-
-    /* === Adjust footer padding and content padding for mobile === */
     footer { padding: 15px 0; } /* Vertical padding on footer */
     .footer-content { padding: 0 15px; } /* Horizontal padding on inner content */
-    /* ============================================================ */
+
+    /* === Adjust .content-section width for phones === */
+    /* On mobile, it should likely just take the full width of the main area */
+    .content-section {
+        max-width: 100%; /* Allow section to take full width of main */
+        margin-left: auto; /* Keep centering */
+        margin-right: auto; /* Keep centering */
+    }
+    /* ============================================== */
 
     body {
         background-size: 100% auto;
@@ -310,12 +300,7 @@ footer {
 
 /* --- Optimization for Tablets (768px to 1023px) --- */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-    /* === Adjust body padding-top for tablet header height === */
-    body {
-        padding-top: 70px; /* Adjust this value if content is still hidden */
-    }
-    /* ======================================================= */
-
+    body { padding-top: 70px; } /* Adjust body padding-top for tablet header height */
     header { padding: 15px 25px; }
     header, main { max-width: 960px; margin: 0 auto; } /* Adjust max-width for tablets */
 
@@ -326,22 +311,23 @@ footer {
     main section { padding: 20px; }
     main section h2 { font-size: 1.5em; }
 
-    /* === Adjust footer content padding for tablets === */
     footer { padding: 20px 0; } /* Vertical padding on footer */
     .footer-content { max-width: 960px; margin: 0 auto; padding: 0 25px; } /* Adjust content width/padding */
-    /* =================================================== */
+
+    /* === Adjust .content-section width for tablets === */
+    .content-section {
+        max-width: 800px; /* Set a narrower width for tablets */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /* =============================================== */
 
     #menu-placeholder nav ul li .dropdown { min-width: 160px; }
 }
 
 /* --- Optimization for Desktops (1024px and above) --- */
 @media screen and (min-width: 1024px) {
-    /* === Adjust body padding-top for desktop header height === */
-    body {
-        padding-top: 90px; /* Adjust this value if content is still hidden */
-    }
-    /* ======================================================== */
-
+    body { padding-top: 90px; } /* Adjust body padding-top for desktop header height */
     header { padding: 20px 30px; }
     header, main { max-width: 1200px; margin: 0 auto; } /* Standard desktop max-width */
 
@@ -352,10 +338,16 @@ footer {
     main section { padding: 25px; }
     main section h2 { font-size: 1.8em; }
 
-    /* === Adjust footer content padding for desktops === */
     footer { padding: 20px 0; } /* Vertical padding on footer */
     .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 30px; } /* Adjust content width/padding */
-    /* =================================================== */
+
+    /* === Adjust .content-section width for desktops === */
+    .content-section {
+        max-width: 1000px; /* Set the maximum width for this specific section */
+        margin-left: auto; /* Center the section horizontally */
+        margin-right: auto; /* Center the section horizontally */
+    }
+    /* ================================================= */
 
     #menu-placeholder nav ul li .dropdown { min-width: 180px; }
 }
