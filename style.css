@@ -7,11 +7,12 @@
     CSS selectors target HTML elements (body, h1, p), classes (.hero, .content-section),
     and IDs (#menu-placeholder) to apply styles (colors, fonts, layout, etc.).
 
-    We are now using a CSS variable (--page-background-image) defined on the
-    body element in each HTML file to specify the background image URL.
+    We are now using a CSS variable (--page-background-image) defined on a
+    background div in each HTML file to specify the background image URL.
     The styling properties (size, position, etc.) are defined here in style.css.
 
     Added styles for dropdown menus and updated menu font to Arvo.
+    Adjusted layout to position background image area below a fixed header.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
@@ -21,26 +22,36 @@
     padding: 0;
 }
 
-/* === 2. Body Styles (Background Color, Image using Variable, Base Font) === */
+/* === 2. Body Styles (Background Color and Base Font) === */
+/*
+    Styles applied to the <body> affect the entire visible page.
+    Background image properties are moved to .page-background-area.
+*/
 body {
     font-family: sans-serif; /* Keep this as the ultimate fallback for ALL text */
     line-height: 1.6;
     color: #333;
     background-color: #333; /* Dark gray background color underneath everything */
-    background-image: var(--page-background-image, none); /* Use CSS variable for image */
-    background-repeat: no-repeat;
-    background-size: 100% auto; /* Span left-right, maintain aspect ratio */
-    background-position: center top;
-    background-attachment: fixed; /* Or 'scroll' */
+    /* REMOVED background-image, background-repeat, background-size, background-position, background-attachment */
 }
 
 /* === 3. Header Layout (Title and Menu Positioning) === */
 header {
+    /* Define a CSS variable for header height - approximate values */
+    --header-height: 60px; /* Default height for desktop */
+
     padding: 10px 20px;
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
-    position: relative;
-    z-index: 10;
+    width: 100%; /* Ensure header spans full width when fixed */
+    position: fixed; /* Fix the header to the top of the viewport */
+    top: 0;
+    left: 0;
+    z-index: 20; /* Ensure header is above background and main content */
+    /* Set height based on the variable */
+    height: var(--header-height);
+    /* Prevent content inside header from overflowing if height is constrained */
+    overflow: hidden;
 }
 
 .header-container {
@@ -49,6 +60,8 @@ header {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    /* Allow content inside container to determine height up to header height */
+    height: 100%;
 }
 
 header h1 {
@@ -56,14 +69,45 @@ header h1 {
     margin: 0;
     color: #fff;
     /* Optional: Apply Arvo to the title as well if you like */
-    /* font-family: 'Arvo', serif; /* Arvo is a serif font */
+    /* font-family: 'Arvo', serif; */
 }
 
-/* === 4. Navigation Menu Styles (Including Dropdowns) === */
+/* === 4. Background Image Area Styles === */
+/*
+    Styles for the new div that holds the background image.
+    It is fixed to the viewport and positioned below the header.
+*/
+.page-background-area {
+    /* Position fixed to cover the viewport */
+    position: fixed;
+    top: var(--header-height); /* Position its top edge based on header height variable */
+    left: 0;
+    right: 0;
+    bottom: 0; /* Make it span down to the bottom of the viewport */
+    z-index: 0; /* Place it behind other content */
+
+    /* Background image properties using the variable from the HTML */
+    background-image: var(--page-background-image, none); /* Use CSS variable for image */
+    background-repeat: no-repeat;
+    background-size: 100% auto; /* Span left-right, maintain aspect ratio */
+    background-position: center top; /* Position relative to THIS div's top edge */
+    background-attachment: fixed; /* Keep fixed relative to viewport */
+    /* Note: background-attachment: fixed on a fixed element can sometimes behave unexpectedly
+             in certain browsers/situations, but it's the standard way to try and achieve
+             the parallax effect within this fixed background area. */
+}
+
+
+/* === 5. Navigation Menu Styles (Including Dropdowns) === */
 /*
     Styles for the navigation menu loaded into #menu-placeholder.
     These styles apply to the main horizontal menu and the dropdowns.
 */
+#menu-placeholder {
+    /* Ensure the placeholder doesn't affect header flex layout negatively */
+    flex-shrink: 0;
+}
+
 #menu-placeholder nav ul {
     list-style: none;
     padding: 0;
@@ -72,12 +116,18 @@ header h1 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    /* Ensure ul doesn't exceed header height */
+    height: 100%;
 }
 
 /* Style for main menu list items */
 #menu-placeholder nav li {
     margin-left: 20px;
     position: relative;
+    /* Ensure li doesn't exceed header height */
+    height: 100%;
+    display: flex; /* Use flex to vertically center link inside li */
+    align-items: center;
 }
 
 /* Style for main menu links */
@@ -86,11 +136,9 @@ header h1 {
     color: #fff;
     font-weight: bold;
     padding: 5px 10px;
-    display: inline-block;
+    display: inline-block; /* Keep inline-block for padding/margin */
     transition: color 0.3s ease;
-    /* === Apply Arvo font here === */
-    font-family: 'Arvo', serif; /* Arvo is a serif font, use serif as fallback */
-    /* ========================== */
+    font-family: 'Arvo', serif;
 }
 
 #menu-placeholder nav a:hover {
@@ -103,12 +151,15 @@ header h1 {
 #menu-placeholder nav ul li .dropdown {
     display: none;
     position: absolute;
-    top: 100%;
+    /* Position relative to the parent li, but offset from the top of the *viewport*
+       due to the fixed header. We need to adjust this. */
+    /* Let's position relative to the parent li's *bottom* */
+    top: 100%; /* Position below the parent li */
     left: 0;
     background-color: rgba(0, 0, 0, 0.8);
     min-width: 180px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 1; /* Ensure dropdown appears above other content */
     padding: 10px 0;
     border-radius: 0 0 8px 8px;
     list-style: none;
@@ -120,6 +171,8 @@ header h1 {
     display: block;
     margin: 0;
     padding: 0;
+    height: auto; /* Remove height constraint */
+    align-items: stretch; /* Remove vertical centering */
 }
 
 /* Style for links within the dropdown */
@@ -130,9 +183,7 @@ header h1 {
     display: block;
     font-weight: normal;
     transition: background-color 0.3s ease, color 0.3s ease;
-    /* === Apply Arvo font here === */
-    font-family: 'Arvo', serif; /* Arvo is a serif font, use serif as fallback */
-    /* ========================== */
+    font-family: 'Arvo', serif;
 }
 
 /* Style for links within the dropdown on hover */
@@ -168,19 +219,18 @@ noscript nav a {
     font-weight: bold;
     padding: 5px 10px;
     display: inline-block;
-    /* === Apply Arvo font here === */
-    font-family: 'Arvo', serif; /* Arvo is a serif font, use serif as fallback */
-    /* ========================== */
+    font-family: 'Arvo', serif;
 }
 
 
-/* === 5. Main Content Area Styles === */
+/* === 6. Main Content Area Styles === */
 main {
     max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
+    /* Add top margin to push main content down below the fixed header */
+    margin: var(--header-height) auto 20px auto; /* Top margin based on header height */
+    padding: 20px; /* Add padding inside main */
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Ensure main content is above the background */
 }
 
 main section {
@@ -197,7 +247,7 @@ main section h2 {
     /* font-family: 'Arvo', serif; */
 }
 
-/* === 6. Footer Styles === */
+/* === 7. Footer Styles === */
 footer {
     text-align: center;
     padding: 20px;
@@ -209,24 +259,34 @@ footer {
 }
 
 
-/* === 7. Responsive Adjustments (Media Queries) === */
+/* === 8. Responsive Adjustments (Media Queries) === */
 
 /* --- Optimization for Phones (up to 767px) --- */
 @media screen and (max-width: 767px) {
-    header { padding: 10px 15px; }
-    .header-container { flex-direction: column; align-items: flex-start; }
+    /* Adjust header height variable and padding for mobile */
+    header {
+        --header-height: 100px; /* Approximate height for stacked layout */
+        padding: 10px 15px;
+        height: auto; /* Allow height to adjust based on content wrapping */
+    }
+
+    .header-container { flex-direction: column; align-items: flex-start; height: auto; }
     header h1 { font-size: 1.5em; margin-bottom: 10px; }
 
+    /* Stack main menu items vertically on phones */
     #menu-placeholder nav ul, noscript nav ul {
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
+        height: auto; /* Allow height to adjust */
     }
 
     #menu-placeholder nav li, noscript nav li {
         margin: 5px 0;
         margin-left: 0;
         width: 100%;
+        height: auto; /* Allow height to adjust */
+        align-items: stretch; /* Stretch links to fill width */
     }
 
     #menu-placeholder nav a, noscript nav a {
@@ -255,41 +315,89 @@ footer {
          display: block;
     }
 
-    main { padding: 0 10px; }
+    /* Adjust main content top margin for mobile header height */
+    main {
+        margin-top: var(--header-height); /* Use adjusted header height variable */
+        padding: 15px 10px; /* Adjust padding */
+    }
+
     main section { padding: 15px; }
     main section h2 { font-size: 1.3em; }
     footer { padding: 15px; font-size: 0.8em; }
 
-    body {
-        background-size: 100% auto;
-        background-position: center top;
+    /* Background area adjustments for mobile */
+    .page-background-area {
+         top: var(--header-height); /* Use adjusted header height variable */
+         background-size: 100% auto; /* Keep consistent or change to 'cover' */
+         background-position: center top; /* Adjust vertical position for mobile */
     }
 }
 
 /* --- Optimization for Tablets (768px to 1023px) --- */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-    header { padding: 15px 25px; }
-    .header-container { max-width: 960px; }
+    /* Adjust header height variable and padding for tablets */
+    header {
+        --header-height: 70px; /* Approximate height for tablet */
+        padding: 15px 25px;
+        height: var(--header-height);
+    }
+
+    .header-container { max-width: 960px; height: 100%; }
     header h1 { font-size: 1.8em; }
-    #menu-placeholder nav li, noscript nav li { margin-left: 15px; }
-    main { max-width: 960px; padding: 0 25px; }
+    #menu-placeholder nav li, noscript nav li { margin-left: 15px; height: 100%; }
+    #menu-placeholder nav ul { height: 100%; }
+    #menu-placeholder nav li { display: flex; align-items: center; } /* Ensure vertical centering */
+
+
+    /* Adjust main content top margin for tablet header height */
+    main {
+        margin-top: var(--header-height); /* Use adjusted header height variable */
+        max-width: 960px;
+        padding: 20px 25px;
+    }
+
     main section { padding: 20px; }
     main section h2 { font-size: 1.5em; }
     footer { max-width: 960px; margin: 20px auto 0; padding: 20px 25px; }
     #menu-placeholder nav ul li .dropdown { min-width: 160px; }
+
+    /* Background area adjustments for tablets */
+    .page-background-area {
+         top: var(--header-height); /* Use adjusted header height variable */
+    }
 }
 
 /* --- Optimization for Desktops (1024px and above) --- */
 @media screen and (min-width: 1024px) {
-    header { padding: 20px 30px; }
-    .header-container { max-width: 1200px; }
+    /* Adjust header height variable and padding for desktop */
+    header {
+        --header-height: 80px; /* Approximate height for desktop */
+        padding: 20px 30px;
+        height: var(--header-height);
+    }
+
+    .header-container { max-width: 1200px; height: 100%; }
     header h1 { font-size: 2em; }
-    #menu-placeholder nav li, noscript nav li { margin-left: 20px; }
-    main { max-width: 1200px; padding: 0 30px; }
+    #menu-placeholder nav li, noscript nav li { margin-left: 20px; height: 100%; }
+    #menu-placeholder nav ul { height: 100%; }
+     #menu-placeholder nav li { display: flex; align-items: center; } /* Ensure vertical centering */
+
+    /* Adjust main content top margin for desktop header height */
+    main {
+        margin-top: var(--header-height); /* Use adjusted header height variable */
+        max-width: 1200px;
+        padding: 20px 30px;
+    }
+
     main section { padding: 25px; }
     main section h2 { font-size: 1.8em; }
     footer { max-width: 1200px; margin: 20px auto 0; padding: 20px 30px; }
     #menu-placeholder nav ul li .dropdown { min-width: 180px; }
+
+    /* Background area adjustments for desktop */
+    .page-background-area {
+         top: var(--header-height); /* Use adjusted header height variable */
+    }
 }
 
 
