@@ -40,10 +40,18 @@
 
     </head>
     <!--
-        The body tag no longer has the background image style attribute.
-        The background image is now applied to a separate div below the header.
+        Add a 'style' attribute to the body tag to define a CSS variable
+        '--page-background-image'. The value of this variable is the URL
+        of the background image specific to this page.
+        The style.css file will use this variable for the background-image property.
+        This allows each HTML file to specify its own image path while
+        sharing the same background styling rules defined in style.css.
+
+        Using a relative path 'images/microbunker2.png' which assumes the 'images'
+        folder is in the same directory as this index.html file.
+        If hosting on GitHub Pages, you might need the absolute path '/images/microbunker.png'.
     -->
-    <body>
+    <body style="--page-background-image: url('images/microbunker2.png');">
         <!--
             <body>
             Contains all the visible content of the web page.
@@ -86,22 +94,11 @@
             </div>
         </header>
 
-        <!--
-            New div for the background image area.
-            It is placed immediately after the header.
-            The background image URL is defined here using a CSS variable.
-            CSS will position this div below the fixed header and apply the background styles.
-        -->
-        <div class="page-background-area" style="--page-background-image: url('images/microbunker2.png');">
-            <!-- This div is primarily for the background image and has no visible content itself -->
-        </div>
-
         <main>
             <!--
                 <main>
                 Represents the dominant content of the <body>.
                 This section contains content specific to the homepage.
-                It will have top margin to clear the fixed header.
             -->
 
             <section class="hero">
