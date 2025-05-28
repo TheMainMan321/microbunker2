@@ -18,7 +18,7 @@
     Adjusted width and centering for the specific .content-section on the homepage.
     Corrected header styling so its background spans the full width.
     Applied Arvo font, weight, and size to the main site title in the header to match the menu.
-    Adjusted spacing above the first content section using margin-top on the section itself.
+    Adjusted spacing above the main content area using margin-top on the main element.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
@@ -65,6 +65,9 @@ header {
 main {
     max-width: 1200px; /* Limit width of main content on large screens */
     margin: 0 auto; /* Center the main content block horizontally */
+    /* === Add margin-top to create space above the main content area === */
+    margin-top: 40px; /* Add 40px space above the main content (adjust as needed) */
+    /* ================================================================= */
 }
 /* =========================================================== */
 
@@ -204,7 +207,7 @@ main section {
 
 /* main { max-width and margin: auto are in the combined rule above } */
 main {
-    /* Removed margin-top: 20px; */
+    /* margin-top is now in the combined rule above */
     margin-bottom: 20px; /* Keep bottom margin for main content above footer */
     padding: 0 20px; /* Keep horizontal padding */
     /* Removed padding-top from here */
@@ -224,10 +227,8 @@ main {
     max-width: 1000px; /* Set the maximum width for this specific section */
     margin-left: auto; /* Center the section horizontally */
     margin-right: auto; /* Center the section horizontally */
+    /* Removed margin-top from here */
     margin-bottom: 20px; /* Keep margin-bottom from general rule */
-    /* === Add margin-top to create space above this section === */
-    margin-top: 40px; /* Add 40px space above the section (adjust as needed) */
-    /* ====================================================== */
 }
 
 
@@ -285,22 +286,27 @@ footer {
     #menu-placeholder nav ul li .dropdown li a { padding: 8px 25px; } /* Indent dropdown links */
     #menu-placeholder nav ul li.has-dropdown:hover > .dropdown { display: block; }
 
-    main { padding: 0 10px; }
+    main {
+        padding: 0 10px; /* Keep horizontal padding */
+        /* === Adjust margin-top for mobile === */
+        margin-top: 20px; /* Add 20px space above main on mobile */
+        /* ==================================== */
+    }
     main section { padding: 15px; } /* Adjust padding inside sections */
     main section h2 { font-size: 1.3em; }
 
     footer { padding: 15px 0; } /* Vertical padding on footer */
     .footer-content { max-width: 100%; margin: 0 auto; padding: 0 15px; } /* Adjust content width/padding */
 
-    /* === Adjust .content-section width and margin-top for phones === */
+    /* === Adjust .content-section width for phones === */
     .content-section {
         max-width: 100%; /* Allow section to take full width of main */
         margin-left: auto;
         margin-right: auto;
-        margin-top: 20px; /* Adjust margin-top for mobile if needed */
+        /* Removed margin-top from here */
         margin-bottom: 15px; /* Adjust margin-bottom for mobile if needed */
     }
-    /* ============================================================== */
+    /* ============================================== */
 
     body {
         background-size: 100% auto;
@@ -315,8 +321,13 @@ footer {
     header { padding: 15px 25px; width: 100%; }
     .header-container { max-width: 960px; margin: 0 auto; }
 
-    main { max-width: 960px; margin: 0 auto; }
-    main { margin-bottom: 20px; padding: 0 25px; } /* Keep horizontal padding */
+    main {
+        max-width: 960px; margin: 0 auto;
+        margin-bottom: 20px; padding: 0 25px; /* Keep horizontal padding */
+        /* === Adjust margin-top for tablet === */
+        margin-top: 30px; /* Add 30px space above main on tablet */
+        /* ==================================== */
+    }
 
     header h1 { font-size: 1.8em; }
     #menu-placeholder nav li, noscript nav li { margin-left: 15px; }
@@ -326,12 +337,12 @@ footer {
     footer { padding: 20px 0; }
     .footer-content { max-width: 960px; margin: 0 auto; padding: 0 25px; }
 
-    /* === Adjust .content-section width and margin-top for tablets === */
+    /* === Adjust .content-section width for tablets === */
     .content-section {
         max-width: 800px; /* Set a narrower width for tablets */
         margin-left: auto;
         margin-right: auto;
-        margin-top: 30px; /* Adjust margin-top for tablet if needed */
+        /* Removed margin-top from here */
         margin-bottom: 20px; /* Keep margin-bottom from general rule */
     }
     /* =============================================== */
@@ -346,8 +357,13 @@ footer {
     header { padding: 20px 30px; width: 100%; }
     .header-container { max-width: 1200px; margin: 0 auto; }
 
-    main { max-width: 1200px; margin: 0 auto; }
-    main { margin-bottom: 20px; padding: 0 30px; } /* Keep horizontal padding */
+    main {
+        max-width: 1200px; margin: 0 auto;
+        margin-bottom: 20px; padding: 0 30px; /* Keep horizontal padding */
+        /* === Adjust margin-top for desktops === */
+        margin-top: 50px; /* Add 50px space above main on desktop (increased value) */
+        /* ===================================== */
+    }
 
     header h1 { font-size: 2em; }
     #menu-placeholder nav li, noscript nav li { margin-left: 20px; }
@@ -357,12 +373,12 @@ footer {
     footer { padding: 20px 0; }
     .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
 
-    /* === Adjust .content-section width and margin-top for desktops === */
+    /* === Adjust .content-section width for desktops === */
     .content-section {
         max-width: 1000px; /* Set the maximum width for this specific section */
         margin-left: auto;
         margin-right: auto;
-        margin-top: 40px; /* Add 40px space above the section (adjust as needed) */
+        /* Removed margin-top from here */
         margin-bottom: 20px; /* Keep margin-bottom from general rule */
     }
     /* ================================================= */
