@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!--
+    index.html
+
+    This is the main HTML file for the Micro Bunker website homepage.
+    It defines the structure and content of the page.
+-->
+<html lang="en">
+    <!--
+        The <html> element is the root of the HTML page.
+        lang="en" specifies the language of the document.
+    -->
+    <head>
+        <!--
+            <head>
+            Contains meta-information about the HTML document, not visible content.
+        -->
+        <meta charset="UTF-8">
+        <!-- Specifies the character encoding for the document (UTF-8 supports most characters). -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Configures the viewport for responsive design on different devices. -->
+        <title>Micro Bunker | Home</title>
+        <!-- Sets the title displayed in the browser tab. -->
+
+        <!-- === Google Font: Arvo === -->
+        <!--
+            These link tags load the Arvo font from Google Fonts.
+            Add these lines to the <head> of ALL your HTML files.
+        -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap" rel="stylesheet">
+        <!-- ======================== -->
+
+        <!-- Link to the external CSS file for styling -->
+        <link rel="stylesheet" href="style.css">
+        <!-- This links this HTML file to style.css, applying its styles. -->
+
+        <!-- You can add other things here like favicons, other meta tags, etc. -->
+
+    </head>
+    <!--
+        Add a 'style' attribute to the body tag to define a CSS variable
+        '--page-background-image'. The value of this variable is the URL
+        of the background image specific to this page.
+        The style.css file will use this variable for the background-image property.
+        This allows each HTML file to specify its own image path while
+        sharing the same background styling rules defined in style.css.
+
+        Using a relative path 'images/microbunker2.png' which assumes the 'images'
+        folder is in the same directory as this index.html file.
+        If hosting on GitHub Pages, you might need the absolute path '/images/microbunker.png'.
+    -->
+    <body style="--page-background-image: url('images/gammazone1.jpg');">
+        <!--
+            <body>
+            Contains all the visible content of the web page.
+            Padding is added to the top of the body via style.css to
+            prevent content from being hidden behind the fixed header.
+        -->
+
+        <header>
+            <!--
+                <header>
+                Represents introductory content, typically containing the site title and navigation.
+                This header is fixed at the top of the viewport via style.css.
+            -->
+            <div class="header-container">
+                <!-- A container div to help with positioning title and menu using CSS -->
+                <h1>Scenario 1</h1>
+                <!-- The main title of the page, positioned on the top left via CSS. -->
+
+                <!--
+                    Placeholder for the navigation menu.
+                    The JavaScript code at the end of the body will fetch the content
+                    of menugz.html and insert it into this div.
+                    We give it an ID so JavaScript can easily find it.
+                -->
+                <div id="menu-placeholder">
+                    <!--
+                        Fallback navigation for users with JavaScript disabled.
+                        Ensure links point to the correct pages.
+                    -->
+                    <noscript>
+                        <!--
+                            <noscript> tag content is displayed only if JavaScript is disabled.
+                            This provides basic navigation functionality even without JS.
+                        -->
+                        <nav>
+                            <ul>
+                                <li><a href="index.html">Micro Bunker</a></li>
+                                <li><a href="gammazone.html">Gamma Zone</a></li>
+                                <li><a href="vikingbrawl.html">Viking Brawl</a></li>
+                                <li><a href="cowpoke.html">Cowpoke</a></li>
+                                <li><a href="othergames.html">Other Games</a></li>
+                            </ul>
+                        </nav>
+                    </noscript>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!--
+                <main>
+                Represents the dominant content of the <body>.
+                This section contains content specific to the homepage.
+
+                The previous <section class="hero"> has been removed.
+                The main content block is wrapped in a <section> to apply styling.
+            -->
+
+            <!-- Removed <section class="hero"> -->
+
+            <!--
+                Section for general content.
+                Wrapped the content block in a <section> again to apply the
+                white background, padding, margin-bottom, and border-radius
+                via the 'main section' CSS rule in style.css.
+                The 'About Our Games' heading has been removed from this section.
+            -->
+         <section class="content-section">
+            <!-- Removed <h2>About Our Games</h2> -->
+            <!--
+                The following div contains detailed introductory text about Micro Bunker
+                and its games, including inline styles for specific formatting.
+                This div is now inside <section class="content-section"> again.
+                Removed the margin-bottom from the inline style as it's handled by the section.
+            -->
+                <div style="max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; line-height: 1.7;">
+
+                    <h1 style="color: #c0392b; text-align: center; margin-bottom: 20px; font-size: 2.5em;">DARE YOU ENTER THE <strong>GAMMA ZONE</strong>?</h1>
+                    <h2 style="color: #7f8c8d; text-align: center; margin-bottom: 20px; font-size: 1.8em;">Survival is an Option. Sanity is Not Guaranteed.</h2>
+
+                    <p style="margin-bottom: 15px; text-align: justify;">Hear the Geiger counter's insistent click? Feel that prickle on your skin as unseen energies warp the very air around you? That's the <strong>Gamma Zone</strong> beckoning – an irradiated, anomaly-twisted heart of darkness where only the desperate, the daring, or the damned come seeking fortune, forbidden knowledge, or just one more precious day of survival.</p>
+
+                    <p style="margin-bottom: 15px; text-align: justify;"><strong>Gamma Zone</strong> is a 28mm tabletop skirmish wargame that thrusts you into this unforgiving post-cataclysmic exclusion zone. You command a small, hand-picked squad of fighters – perhaps grim Zone Regulation Authority troopers, curious Aurora Foundation scientists, pragmatic Iron Sledge mercenaries, ruthless Syndicate Cartel enforcers, freedom-loving Wayfinders, or just rugged Independents trying to carve out an existence. Your mission: navigate treacherous landscapes, scavenge vital supplies and reality-bending artifacts, battle grotesque mutants and equally dangerous rival stalkers, and confront the Zone’s myriad inexplicable horrors.</p>
+
+                    <h3 style="color: #2c3e50; text-align: center; margin-bottom: 20px; font-size: 1.4em; margin-top: 30px;">What Awaits You in the Irradiated Depths:</h3>
+                    
+                    <div style="margin-top: 25px; margin-bottom: 25px; padding: 15px; background-color: #e9ecef; border-left: 5px solid #d35400; border-radius: 4px;">
+                        <p style="margin-bottom: 0; text-align: justify;"><strong style="color: #d35400; font-weight: bold;">A Living, Killing Environment:</strong> The Zone itself is your greatest adversary. Face physics-defying anomalies that can crush, burn, or transmute unfortunate souls. Endure sudden emission surges that force you to scramble for shelter. Every step is a gamble, every shadow a potential threat.</p>
+                    </div>
+
+                    <div style="margin-top: 25px; margin-bottom: 25px; padding: 15px; background-color: #e9ecef; border-left: 5px solid #d35400; border-radius: 4px;">
+                        <p style="margin-bottom: 0; text-align: justify;"><strong style="color: #d35400; font-weight: bold;">Tense, Tactical Skirmishes:</strong> With an intuitive 2D6 roll-under system, every action is fraught with consequence. Careful positioning, judicious use of cover (from flimsy barricades to solid ruins), and smart activation choices are paramount. Will you risk an aimed shot, lay down suppressing fire, or make a desperate charge?</p>
+                    </div>
+
+                    <div style="margin-top: 25px; margin-bottom: 25px; padding: 15px; background-color: #e9ecef; border-left: 5px solid #d35400; border-radius: 4px;">
+                        <p style="margin-bottom: 0; text-align: justify;"><strong style="color: #d35400; font-weight: bold;">Your Squad, Your Story:</strong> Lead a unique crew of fighters, each with their own stats and (in scenarios) pre-defined gear reflecting their faction's doctrine. The (optional) Advanced Rules will allow for full squad customization, faction benefits, and campaign progression where your survivors gain experience, scars, and notoriety.</p>
+                    </div>
+                    
+                    <div style="margin-top: 25px; margin-bottom: 25px; padding: 15px; background-color: #e9ecef; border-left: 5px solid #d35400; border-radius: 4px;">
+                        <p style="margin-bottom: 0; text-align: justify;"><strong style="color: #d35400; font-weight: bold;">Dark Humor & Gritty Survival:</strong> The Zone is a grim place, but it’s not without its moments of bleak comedy. Expect a game where plans go spectacularly awry, critical failures lead to hilarious catastrophes, and hard-won victories feel truly earned against impossible odds.</p>
+                    </div>
+
+                    <h3 style="color: #2c3e50; text-align: center; margin-bottom: 20px; font-size: 1.4em; margin-top: 30px;">The Zone is Not for the Faint of Heart:</h3>
+                    <p style="margin-bottom: 15px; text-align: justify;"><strong>Gamma Zone</strong> isn't just about who has the biggest gun (though it helps!). It's about outthinking your opponents, outlasting the environment, and making those gut-wrenching choices when your supplies are low and something inhuman is howling in the distance. Prepare for moments of sheer terror, unexpected triumph, and the uniquely satisfying crunch of a successful mission in a world that actively wants you dead.</p>
+                    
+                    <div style="text-align: center; margin-top: 30px; font-size: 1.2em;">
+                        <p style="margin-bottom: 15px; text-align: center;">The full <strong>Gamma Zone</strong> rulebook is materializing from the Zone's depths, packed with core rules, distinct factions, engaging scenarios for pre-generated squads, and a clear path to advanced customization and campaign play.</p>
+                        <p style="margin-bottom: 15px; text-align: center;"><strong>Prepare your miniatures. Check your dice. The Gamma Zone is waiting.</strong></p>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 40px; font-size: 0.9em; color: #777;">
+                        <p style="margin-bottom: 0;">A Micro Bunker Development.</p>
+                    </div>
+                </div>
+            <!-- End of content div -->
+        </section>
+            <!-- End of content section -->
+
+            <!-- Add more sections as needed for different content blocks -->
+
+        </main>
+
+        <footer>
+            <!--
+                <footer>
+                Represents the footer content for the page.
+                Typically contains copyright, links to legal pages, etc.
+                The footer element itself now spans the full width.
+            -->
+            <!-- === Container div to center and limit the width of the footer content === -->
+            <div class="footer-content">
+                <p>© <span id="current-year"></span> Micro Bunker. All rights reserved.</p>
+                <!--
+                    © is the HTML entity for the copyright symbol.
+                    <span id="current-year"></span> is a placeholder for the year,
+                    which will be filled by the JavaScript below.
+                -->
+                <!-- Add other footer links/content here if needed -->
+            </div>
+            <!-- ======================================================================= -->
+        </footer>
+
+        <!--
+            JavaScript to load the menu from menugz.html.
+            Placed at the end of the body so the HTML structure is loaded
+            before the script tries to find the placeholder element.
+            This script is specific to this page because it fetches 'menugz.html'.
+        -->
+        <script>
+            /*
+                Async function to fetch the content of menugz.html
+                and insert it into the element with id="menu-placeholder".
+                This allows the menu HTML to be managed in a separate file.
+            */
+            async function loadMenu() {
+                try {
+                    // Fetch the menugz.html file
+                    const response = await fetch('menugz.html');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const menuHtml = await response.text();
+                    const menuPlaceholder = document.getElementById('menu-placeholder');
+                    if (menuPlaceholder) {
+                        menuPlaceholder.innerHTML = menuHtml;
+                    } else {
+                        console.warn('Menu placeholder element with ID "menu-placeholder" not found.');
+                    }
+                } catch (error) {
+                    console.error('Failed to load menu:', error);
+                }
+                // Note: The fallback <noscript> menu is already in the HTML
+            }
+            loadMenu(); // Call the function to load the menu
+
+            /*
+                Simple script to update the copyright year automatically.
+                This finds the span with id="current-year" and sets its text
+                to the current full year.
+            */
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) { // Check if the element exists before trying to modify it
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        </script>
+
+    </body>
+</html>
