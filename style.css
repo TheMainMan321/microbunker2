@@ -12,6 +12,8 @@
     The styling properties (size, position, etc.) are defined here in style.css.
 
     Added styles for dropdown menus and updated menu font to Arvo.
+    Adjusted layout to position background image area below a fixed header.
+    Updated transparency for content sections.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
@@ -184,7 +186,9 @@ main {
 }
 
 main section {
-    background-color: rgba(255, 255, 255, 0.9);
+    /* === Changed transparency from 0.9 to 0.7 here === */
+    background-color: rgba(255, 255, 255, 0.7);
+    /* =============================================== */
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 8px;
