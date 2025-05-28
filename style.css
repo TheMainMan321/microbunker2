@@ -16,6 +16,7 @@
     Implemented fixed header and added padding to body to prevent content overlap.
     Modified footer styling to span full width with centered content.
     Adjusted width and centering for the specific .content-section on the homepage.
+    Corrected header styling so its background spans the full width.
 */
 
 /* === 1. Basic Reset and Box Sizing === */
@@ -52,17 +53,20 @@ header {
     color: #fff;
     position: relative;
     z-index: 10;
+
+    /* === Make the header fixed at the top and span full width === */
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100%; /* Ensure header element spans full width */
+    /* ========================================================== */
 }
 
-/* === Apply max-width and centering ONLY to header and main === */
-header, main {
-    max-width: 1200px; /* Limit width on large screens */
-    margin: 0 auto; /* Center the container if max-width is set */
-    /* Footer is removed from this rule */
+/* === Apply max-width and centering ONLY to main content area === */
+/* Header is removed from this rule */
+main {
+    max-width: 1200px; /* Limit width of main content on large screens */
+    margin: 0 auto; /* Center the main content block horizontally */
 }
 /* =========================================================== */
 
@@ -71,7 +75,10 @@ header, main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* max-width and margin: auto are now on the header element itself */
+    /* === Apply max-width and centering to the container INSIDE the header === */
+    max-width: 1200px; /* Limit the width of the header content */
+    margin: 0 auto; /* Center the header content horizontally */
+    /* ===================================================================== */
 }
 
 header h1 {
@@ -196,7 +203,6 @@ main section {
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 8px;
-    /* Removed max-width and margin: auto from here */
 }
 
 /* main { max-width and margin: auto are in the combined rule above } */
@@ -222,7 +228,6 @@ main {
     margin-right: auto; /* Center the section horizontally */
     /* margin-top and margin-bottom are handled by the general main section rule */
 }
-/* ========================================================================= */
 
 
 main section h2 {
@@ -257,8 +262,12 @@ footer {
 /* --- Optimization for Phones (up to 767px) --- */
 @media screen and (max-width: 767px) {
     body { padding-top: 160px; } /* Adjust body padding-top for mobile header height */
-    header { padding: 10px 15px; max-width: 100%; margin: 0 auto; } /* Ensure header is full width on mobile */
-    .header-container { flex-direction: column; align-items: flex-start; }
+
+    /* === Header should be full width, content centered === */
+    header { padding: 10px 15px; width: 100%; } /* Ensure header is full width */
+    .header-container { max-width: 100%; margin: 0 auto; flex-direction: column; align-items: flex-start; } /* Center content, stack items */
+    /* =================================================== */
+
     header h1 { font-size: 1.5em; margin-bottom: 10px; }
 
     #menu-placeholder nav ul, noscript nav ul {
@@ -280,17 +289,11 @@ footer {
     main { padding: 0 10px; }
     main section { padding: 15px; } /* Adjust padding inside sections */
     main section h2 { font-size: 1.3em; }
-    footer { padding: 15px 0; } /* Vertical padding on footer */
-    .footer-content { padding: 0 15px; } /* Horizontal padding on inner content */
 
-    /* === Adjust .content-section width for phones === */
-    /* On mobile, it should likely just take the full width of the main area */
-    .content-section {
-        max-width: 100%; /* Allow section to take full width of main */
-        margin-left: auto; /* Keep centering */
-        margin-right: auto; /* Keep centering */
-    }
-    /* ============================================== */
+    /* === Adjust footer padding and content padding for mobile === */
+    footer { padding: 15px 0; } /* Vertical padding on footer */
+    .footer-content { max-width: 100%; margin: 0 auto; padding: 0 15px; } /* Adjust content width/padding */
+    /* ============================================================ */
 
     body {
         background-size: 100% auto;
@@ -301,13 +304,17 @@ footer {
 /* --- Optimization for Tablets (768px to 1023px) --- */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     body { padding-top: 70px; } /* Adjust body padding-top for tablet header height */
-    header { padding: 15px 25px; }
-    header, main { max-width: 960px; margin: 0 auto; } /* Adjust max-width for tablets */
 
-    .header-container { /* max-width and margin: auto are now on the header element */ }
+    /* === Header should be full width, content centered === */
+    header { padding: 15px 25px; width: 100%; } /* Ensure header is full width */
+    .header-container { max-width: 960px; margin: 0 auto; } /* Center content */
+    /* =================================================== */
+
+    main { max-width: 960px; margin: 0 auto; } /* Adjust main max-width for tablets */
+    main { margin-top: 20px; margin-bottom: 20px; padding: 0 25px; } /* Keep main margins/padding */
+
     header h1 { font-size: 1.8em; }
     #menu-placeholder nav li, noscript nav li { margin-left: 15px; }
-    main { margin-top: 20px; margin-bottom: 20px; padding: 0 25px; } /* Keep main margins/padding */
     main section { padding: 20px; }
     main section h2 { font-size: 1.5em; }
 
@@ -328,13 +335,17 @@ footer {
 /* --- Optimization for Desktops (1024px and above) --- */
 @media screen and (min-width: 1024px) {
     body { padding-top: 90px; } /* Adjust body padding-top for desktop header height */
-    header { padding: 20px 30px; }
-    header, main { max-width: 1200px; margin: 0 auto; } /* Standard desktop max-width */
 
-    .header-container { /* max-width and margin: auto are now on the header element */ }
+    /* === Header should be full width, content centered === */
+    header { padding: 20px 30px; width: 100%; } /* Ensure header is full width */
+    .header-container { max-width: 1200px; margin: 0 auto; } /* Center content */
+    /* =================================================== */
+
+    main { max-width: 1200px; margin: 0 auto; } /* Standard desktop main max-width */
+    main { margin-top: 20px; margin-bottom: 20px; padding: 0 30px; } /* Keep main margins/padding */
+
     header h1 { font-size: 2em; }
     #menu-placeholder nav li, noscript nav li { margin-left: 20px; }
-    main { margin-top: 20px; margin-bottom: 20px; padding: 0 30px; } /* Keep main margins/padding */
     main section { padding: 25px; }
     main section h2 { font-size: 1.8em; }
 
